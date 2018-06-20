@@ -1,0 +1,4 @@
+
+Begin["`Core`"];
+
+End[];
