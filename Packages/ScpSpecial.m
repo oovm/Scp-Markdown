@@ -2,15 +2,15 @@
 
 
 
-ScpSpecial::usage="";
+ScpSpecial::usage = "";
 Begin["`Special`"];
 
-ScpSpecial[OptionsPattern[]]:=Block[
-    {from,case,get},
-    from={ScpFromD,ScpFromArc,ScpFromEx,ScpFromJ};
-    case={$ScpCaseD,$ScpCaseArc,$ScpCaseEx,$ScpCaseJ};
-    get=Flatten[Activate@Thread[Inactive[Map][from,case]]];
-    Select[Join[get,$ScpCaseAdd],StringContainsQ[#["Number"],"-"~~__~~"-"]&]
+ScpSpecial[OptionsPattern[]] := Block[
+    {from, case, get},
+    from = {ScpFromD, ScpFromArc, ScpFromEx, ScpFromJ};
+    case = {$ScpCaseD, $ScpCaseArc, $ScpCaseEx, $ScpCaseJ};
+    get = Flatten[Activate@Thread[Inactive[Map][from, case]]];
+    Select[Join[get, $ScpCaseAdd], StringContainsQ[#["Number"], "-" ~~ __ ~~ "-"]&]
 ]
 
 
@@ -108,13 +108,13 @@ ScpFromArc[link_] := Cases[
 (*Select[all, StringTake[#["Number"], -1] === "J" &]*)
 
 $ScpCaseAdd = {
-    <|"Url"->"//scp-wiki-cn.wikidot.com/scp-one-half-jp-j","Number"->"SCP-1/2-JP-J","Name"->"\:534a\:4ef7"|>,
-    <|"Url"->"//scp-wiki-cn.wikidot.com/scp-36-6-jp-j","Number"->"SCP-36.6-JP-J","Name"->"\:4e0d\:53ef\:89c1\:7684\:6076\:9b54"|>,
-    <|"Url"->"//scp-wiki-cn.wikidot.com/scp-666-jp-j","Number"->"SCP-666-JP-J","Name"->"\:7a76\:6781\:6050\:6016\:7269\:4f53"|>,
-    <|"Url"->"//scp-wiki-cn.wikidot.com/scp-710-jp-j","Number"->"SCP-710-JP-J","Name"->"\:57fa\:91d1\:4f1a\:795e\:62f3"|>,
-    <|"Url"->"//scp-wiki-cn.wikidot.com/scpaaaaaaaaaaaaaaaaaa-jp-j","Number"->"SCP-\:54e6\:5594\:5594\:963f\:963f\:963f\:963f\:963f\:963f\:963f\:963f-JP-J","Name"->""|>,
-    <|"Url"->"//scp-wiki-cn.wikidot.com/scp-017-fr-j","Number"->"SCP-017-FR-J","Name"->"\:9752\:9752\:9152\:539f"|>,
-    <|"Url"->"//scp-wiki-cn.wikidot.com/scp-008-de-j","Number"->"SCP-008-DE-J","Name"->"\:7fd4\:ff1f\:ff01"|>
+    <|"Url" -> "//scp-wiki-cn.wikidot.com/scp-one-half-jp-j", "Number" -> "SCP-1/2-JP-J", "Name" -> "\:534a\:4ef7"|>,
+    <|"Url" -> "//scp-wiki-cn.wikidot.com/scp-36-6-jp-j", "Number" -> "SCP-36.6-JP-J", "Name" -> "\:4e0d\:53ef\:89c1\:7684\:6076\:9b54"|>,
+    <|"Url" -> "//scp-wiki-cn.wikidot.com/scp-666-jp-j", "Number" -> "SCP-666-JP-J", "Name" -> "\:7a76\:6781\:6050\:6016\:7269\:4f53"|>,
+    <|"Url" -> "//scp-wiki-cn.wikidot.com/scp-710-jp-j", "Number" -> "SCP-710-JP-J", "Name" -> "\:57fa\:91d1\:4f1a\:795e\:62f3"|>,
+    <|"Url" -> "//scp-wiki-cn.wikidot.com/scpaaaaaaaaaaaaaaaaaa-jp-j", "Number" -> "SCP-\:54e6\:5594\:5594\:963f\:963f\:963f\:963f\:963f\:963f\:963f\:963f-JP-J", "Name" -> ""|>,
+    <|"Url" -> "//scp-wiki-cn.wikidot.com/scp-017-fr-j", "Number" -> "SCP-017-FR-J", "Name" -> "\:9752\:9752\:9152\:539f"|>,
+    <|"Url" -> "//scp-wiki-cn.wikidot.com/scp-008-de-j", "Number" -> "SCP-008-DE-J", "Name" -> "\:7fd4\:ff1f\:ff01"|>
 };
 
 

@@ -7,14 +7,14 @@
 
 
 Unprotect[ScpMarkdown`PackageScope`Private`$TopLevelLoad];
-ScpMarkdown`PackageScope`Private`$TopLevelLoad=MemberQ[$ContextPath, "Global`"];
+ScpMarkdown`PackageScope`Private`$TopLevelLoad = MemberQ[$ContextPath, "Global`"];
 
 
 BeginPackage["ScpMarkdown`"];
 
 
 ClearAll[ScpMarkdown];
-ScpMarkdown::usage="ScpMarkdown is a manager head for the ScpMarkdown package";
+ScpMarkdown::usage = "ScpMarkdown is a manager head for the ScpMarkdown package";
 
 
 (* ::Subsubsection::Closed:: *)
@@ -22,31 +22,31 @@ ScpMarkdown::usage="ScpMarkdown is a manager head for the ScpMarkdown package";
 
 
 System`Private`NewContextPath@
-	Join[
-		$ContextPath,
-		"ScpMarkdown`"<>
-			StringReplace[
-				FileNameDrop[#,FileNameDepth@DirectoryName@$InputFileName],
-				$PathnameSeparator->"`"
-				]&/@
-			Select[
-				DirectoryQ@#&&
-					StringMatchQ[
-						StringReplace[
-							FileNameDrop[#,FileNameDepth@DirectoryName@$InputFileName],
-							$PathnameSeparator->"`"
-							],
-						("$"|WordCharacter)..
-						]
-				&]@
-			FileNames["*",
-				FileNameJoin@{
-					DirectoryName@$InputFileName,
-					"Packages"
-					},
-				Infinity
-				]
-		]
+    Join[
+        $ContextPath,
+        "ScpMarkdown`" <>
+            StringReplace[
+                FileNameDrop[#, FileNameDepth@DirectoryName@$InputFileName],
+                $PathnameSeparator -> "`"
+            ]& /@
+            Select[
+                DirectoryQ@# &&
+                    StringMatchQ[
+                        StringReplace[
+                            FileNameDrop[#, FileNameDepth@DirectoryName@$InputFileName],
+                            $PathnameSeparator -> "`"
+                        ],
+                        ("$" | WordCharacter)..
+                    ]
+                    &]@
+                FileNames["*",
+                    FileNameJoin@{
+                        DirectoryName@$InputFileName,
+                        "Packages"
+                    },
+                    Infinity
+                ]
+    ]
 
 
 (* ::Section:: *)
@@ -62,18 +62,18 @@ AppendTo[$ContextPath, $Context];
 (*Constants*)
 
 
-$PackageDirectory::usage="";
-$PackageName::usage="";
-$PackageListing::usage="";
-$PackageContexts::usage="";
-$PackageDeclared::usage="";
-$PackageFEHiddenSymbols::usage="";
-$PackageScopedSymbols::usage="";
-$PackageLoadSpecs::usage="";
-$AllowPackageSymbolDefinitions::usage="";
-$AllowPackageRescoping::usage="";
-$AllowPackageRecoloring::usage="";
-$AllowPackageAutocompletions::usage="";
+$PackageDirectory::usage = "";
+$PackageName::usage = "";
+$PackageListing::usage = "";
+$PackageContexts::usage = "";
+$PackageDeclared::usage = "";
+$PackageFEHiddenSymbols::usage = "";
+$PackageScopedSymbols::usage = "";
+$PackageLoadSpecs::usage = "";
+$AllowPackageSymbolDefinitions::usage = "";
+$AllowPackageRescoping::usage = "";
+$AllowPackageRecoloring::usage = "";
+$AllowPackageAutocompletions::usage = "";
 
 
 (* ::Subsubsection::Closed:: *)
@@ -87,124 +87,124 @@ Begin["`Constants`"];
 (*Naming*)
 
 
-ScpMarkdown["Directory"]:=
-	$PackageDirectory;
-$PackageDirectory=
-	DirectoryName@$InputFileName;
+ScpMarkdown["Directory"] :=
+    $PackageDirectory;
+$PackageDirectory =
+    DirectoryName@$InputFileName;
 
 
-ScpMarkdown["Name"]:=
-	$PackageName;
-$PackageName=
-	"ScpMarkdown";
+ScpMarkdown["Name"] :=
+    $PackageName;
+$PackageName =
+    "ScpMarkdown";
 
 
 (* ::Subsubsection::Closed:: *)
 (*Loading*)
 
 
-ScpMarkdown["PackageListing"]:=$PackageListing;
-$PackageListing=<||>;
-ScpMarkdown["Contexts"]:=$PackageContexts;
-$PackageContexts=
-	{
-		"ScpMarkdown`",
-		"ScpMarkdown`PackageScope`Private`",
-		"ScpMarkdown`PackageScope`Package`"
-		};
-$PackageDeclared=
-	TrueQ[$PackageDeclared];
+ScpMarkdown["PackageListing"] := $PackageListing;
+$PackageListing = <||>;
+ScpMarkdown["Contexts"] := $PackageContexts;
+$PackageContexts =
+    {
+        "ScpMarkdown`",
+        "ScpMarkdown`PackageScope`Private`",
+        "ScpMarkdown`PackageScope`Package`"
+    };
+$PackageDeclared =
+    TrueQ[$PackageDeclared];
 
 
 (* ::Subsubsection::Closed:: *)
 (*Scoping*)
 
 
-ScpMarkdown["FEScopedSymbols"]:=$PackageFEHiddenSymbols;
-$PackageFEHiddenSymbols={};
-ScpMarkdown["PackageScopedSymbols"]:=$PackageScopedSymbols;
-$PackageScopedSymbols={};
-ScpMarkdown["LoadingParameters"]:=$PackageLoadSpecs
-$PackageLoadSpecs=
-	Merge[
-		{
-			With[
-				{
-					f=
-						Append[
-							FileNames[
-								"LoadInfo."~~"m"|"wl",
-								FileNameJoin@{$PackageDirectory, "Config"}
-								],
-							None
-							][[1]]
-					},
-				Replace[
-						Quiet[
-							Import@f,
-							{
-								Import::nffil,
-								Import::chtype
-								}
-							],
-					Except[KeyValuePattern[{}]]:>
-						{}
-					]
-				],
-			With[
-				{
-					f=
-						Append[
-							FileNames[
-								"LoadInfo."~~"m"|"wl",
-								FileNameJoin@{$PackageDirectory, "Private", "Config"}
-								],
-							None
-							][[1]]},
-				Replace[
-					Quiet[
-						Import@f,
-						{
-							Import::nffil,
-							Import::chtype
-							}
-						],
-					Except[KeyValuePattern[{}]]:>
-						{}
-					]
-				]
-			},
-		Last
-		];
+ScpMarkdown["FEScopedSymbols"] := $PackageFEHiddenSymbols;
+$PackageFEHiddenSymbols = {};
+ScpMarkdown["PackageScopedSymbols"] := $PackageScopedSymbols;
+$PackageScopedSymbols = {};
+ScpMarkdown["LoadingParameters"] := $PackageLoadSpecs
+$PackageLoadSpecs =
+    Merge[
+        {
+            With[
+                {
+                    f =
+                        Append[
+                            FileNames[
+                                "LoadInfo." ~~ "m" | "wl",
+                                FileNameJoin@{$PackageDirectory, "Config"}
+                            ],
+                            None
+                        ][[1]]
+                },
+                Replace[
+                    Quiet[
+                        Import@f,
+                        {
+                            Import::nffil,
+                            Import::chtype
+                        }
+                    ],
+                    Except[KeyValuePattern[{}]] :>
+                        {}
+                ]
+            ],
+            With[
+                {
+                    f =
+                        Append[
+                            FileNames[
+                                "LoadInfo." ~~ "m" | "wl",
+                                FileNameJoin@{$PackageDirectory, "Private", "Config"}
+                            ],
+                            None
+                        ][[1]]},
+                Replace[
+                    Quiet[
+                        Import@f,
+                        {
+                            Import::nffil,
+                            Import::chtype
+                        }
+                    ],
+                    Except[KeyValuePattern[{}]] :>
+                        {}
+                ]
+            ]
+        },
+        Last
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
 (*Allow flags*)
 
 
-$AllowPackageSymbolDefinitions=
-	Replace[
-		Lookup[$PackageLoadSpecs, "PackageSymbolDefinitions"],
-		Except[True|False|None]->True
-		];
-ScpMarkdown["AllowRescoping"]:=$AllowPackageRescoping;
-$AllowPackageRescoping=
-	Replace[
-		Lookup[$PackageLoadSpecs, "AllowRescoping"],
-		Except[True|False]->$TopLevelLoad
-		];
-ScpMarkdown["AllowRecoloring"]:=$AllowPackageRecoloring;
-$AllowPackageRecoloring=
-	Replace[
-		Lookup[$PackageLoadSpecs, "AllowRecoloring"],
-		Except[True|False]->$TopLevelLoad
-		];
-ScpMarkdown["AllowAutocompletions"]:=$AllowPackageAutocompletions;
-$AllowPackageAutocompletions=
-	Replace[
-		Lookup[$PackageLoadSpecs, "AllowAutocompletions"],
-		Except[True|False]->$TopLevelLoad
-		];
+$AllowPackageSymbolDefinitions =
+    Replace[
+        Lookup[$PackageLoadSpecs, "PackageSymbolDefinitions"],
+        Except[True | False | None] -> True
+    ];
+ScpMarkdown["AllowRescoping"] := $AllowPackageRescoping;
+$AllowPackageRescoping =
+    Replace[
+        Lookup[$PackageLoadSpecs, "AllowRescoping"],
+        Except[True | False] -> $TopLevelLoad
+    ];
+ScpMarkdown["AllowRecoloring"] := $AllowPackageRecoloring;
+$AllowPackageRecoloring =
+    Replace[
+        Lookup[$PackageLoadSpecs, "AllowRecoloring"],
+        Except[True | False] -> $TopLevelLoad
+    ];
+ScpMarkdown["AllowAutocompletions"] := $AllowPackageAutocompletions;
+$AllowPackageAutocompletions =
+    Replace[
+        Lookup[$PackageLoadSpecs, "AllowAutocompletions"],
+        Except[True | False] -> $TopLevelLoad
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -216,8 +216,8 @@ End[]
 (*Paths*)
 
 
-PackageFilePath::usage="";
-PackageFEFile::usage="";
+PackageFilePath::usage = "";
+PackageFEFile::usage = "";
 
 
 (* ::Subsubsection::Closed:: *)
@@ -231,37 +231,37 @@ Begin["`Paths`"]
 (*PackageFilePath*)
 
 
-PackageFilePath[p__]:=
-	FileNameJoin[Flatten@{
-		$PackageDirectory,
-		p
-		}];
+PackageFilePath[p__] :=
+    FileNameJoin[Flatten@{
+        $PackageDirectory,
+        p
+    }];
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageFEFile*)
 
 
-PackageFEFile[p___,f_]:=
-	FrontEnd`FileName[
-		Evaluate@
-		Flatten@{
-			$PackageName,
-			p
-			},
-		f
-		];
+PackageFEFile[p___, f_] :=
+    FrontEnd`FileName[
+        Evaluate@
+            Flatten@{
+                $PackageName,
+                p
+            },
+        f
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackagePathSymbol*)
 
 
-PackagePathSymbol[parts___String,sym_String]:=
-	ToExpression[StringRiffle[{$PackageName,parts,sym},"`"],StandardForm,HoldPattern];
-PackagePathSymbol[parts___String,sym_Symbol]:=
-	PackagePathSymbol[parts,Evaluate@SymbolName@Unevaluated[sym]];
-PackagePathSymbol~SetAttributes~HoldRest;
+PackagePathSymbol[parts___String, sym_String] :=
+    ToExpression[StringRiffle[{$PackageName, parts, sym}, "`"], StandardForm, HoldPattern];
+PackagePathSymbol[parts___String, sym_Symbol] :=
+    PackagePathSymbol[parts, Evaluate@SymbolName@Unevaluated[sym]];
+PackagePathSymbol ~ SetAttributes ~ HoldRest;
 
 
 (* ::Subsubsection::Closed:: *)
@@ -273,21 +273,21 @@ End[]
 (*Loading*)
 
 
-$PackageFileContexts::usage="";
-$DeclaredPackages::usage="";
-$LoadedPackages::usage="";
+$PackageFileContexts::usage = "";
+$DeclaredPackages::usage = "";
+$LoadedPackages::usage = "";
 
 
-PackageExecute::usage="";
-PackageLoadPackage::usage="";
-PackageLoadDeclare::usage="";
-PackageAppLoad::usage="";
-PackageAppGet::usage="";
-PackageAppNeeds::usage="";
-PackageScopeBlock::usage="";
-PackageFERehideSymbols::usage="Predeclared here...";
-PackageDecontext::usage="";
-PackageRecontext::usage="";
+PackageExecute::usage = "";
+PackageLoadPackage::usage = "";
+PackageLoadDeclare::usage = "";
+PackageAppLoad::usage = "";
+PackageAppGet::usage = "";
+PackageAppNeeds::usage = "";
+PackageScopeBlock::usage = "";
+PackageFERehideSymbols::usage = "Predeclared here...";
+PackageDecontext::usage = "";
+PackageRecontext::usage = "";
 
 
 (* ::Subsubsection::Closed:: *)
@@ -301,385 +301,385 @@ Begin["`Loading`"]
 (*Constants*)
 
 
-ScpMarkdown["FileContexts"]:=$PackageFileContexts;
+ScpMarkdown["FileContexts"] := $PackageFileContexts;
 If[Not@AssociationQ@$PackageFileContexts,
-	$PackageFileContexts=
-		<||>
-	];
+    $PackageFileContexts =
+        <||>
+];
 
 
-ScpMarkdown["DeclaredPackages"]:=$DeclaredPackages;
+ScpMarkdown["DeclaredPackages"] := $DeclaredPackages;
 If[Not@AssociationQ@$DeclaredPackages,
-	$DeclaredPackages=
-		<||>
-	];
+    $DeclaredPackages =
+        <||>
+];
 
 
-ScpMarkdown["LoadedPackages"]:=$LoadedPackages;
+ScpMarkdown["LoadedPackages"] := $LoadedPackages;
 If[Not@ListQ@$LoadedPackages,
-	$LoadedPackages={}
-	];
+    $LoadedPackages = {}
+];
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageFileContext*)
 
 
-PackageFileContextPath[f_String?DirectoryQ]:=
-	FileNameSplit[FileNameDrop[f,FileNameDepth[$PackageDirectory]+1]];
-PackageFileContextPath[f_String?FileExistsQ]:=
-	PackageFileContextPath[DirectoryName@f];
+PackageFileContextPath[f_String?DirectoryQ] :=
+    FileNameSplit[FileNameDrop[f, FileNameDepth[$PackageDirectory] + 1]];
+PackageFileContextPath[f_String?FileExistsQ] :=
+    PackageFileContextPath[DirectoryName@f];
 
 
-PackageFileContext[f_String?DirectoryQ]:=
-	With[{s=PackageFileContextPath[f]},
-		StringRiffle[Append[""]@Prepend[s,ScpMarkdown],"`"]
-		];
-PackageFileContext[f_String?FileExistsQ]:=
-	PackageFileContext[DirectoryName[f]];
+PackageFileContext[f_String?DirectoryQ] :=
+    With[{s = PackageFileContextPath[f]},
+        StringRiffle[Append[""]@Prepend[s, ScpMarkdown], "`"]
+    ];
+PackageFileContext[f_String?FileExistsQ] :=
+    PackageFileContext[DirectoryName[f]];
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageExecute*)
 
 
-PackageExecute[expr_]:=
-	Internal`WithLocalSettings[
-		Begin[$PackageContexts[[1]]];
-		System`Private`NewContextPath@
-			Prepend[
-				$PackageContexts,
-				"System`"
-				];,
-		expr,
-		System`Private`RestoreContextPath[];
-		End[];
-		];
-PackageExecute~SetAttributes~HoldFirst
+PackageExecute[expr_] :=
+    Internal`WithLocalSettings[
+        Begin[$PackageContexts[[1]]];
+        System`Private`NewContextPath@
+            Prepend[
+                $PackageContexts,
+                "System`"
+            ];,
+        expr,
+        System`Private`RestoreContextPath[];
+        End[];
+    ];
+PackageExecute ~ SetAttributes ~ HoldFirst
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackagePullDeclarations*)
 
 
-PackagePullDeclarationsAction//Clear
+PackagePullDeclarationsAction // Clear
 PackagePullDeclarationsAction[
-	Hold[
-		_Begin|_BeginPackage|
-			CompoundExpression[_Begin|_BeginPackage,___]
-		]
-	]:=
-	Throw[Begin];
+    Hold[
+        _Begin | _BeginPackage |
+            CompoundExpression[_Begin | _BeginPackage, ___]
+    ]
+] :=
+    Throw[Begin];
 PackagePullDeclarationsAction[
-	p:
-		Hold[
-			_PackageFEHiddenBlock|_PackageScopeBlock|
-			CompoundExpression[
-				_PackageFEHiddenBlock|_PackageScopeBlock,
-				___]
-			]
-	]/;TrueQ[$AllowPackageRescoping]:=
-	(
-		ReleaseHold[p];
-		Sow[p];
-		);
-PackagePullDeclarationsAction[e:Except[Hold[Expression]]]:=
-	Sow@e;
+    p :
+        Hold[
+            _PackageFEHiddenBlock | _PackageScopeBlock |
+                CompoundExpression[
+                    _PackageFEHiddenBlock | _PackageScopeBlock,
+                    ___]
+        ]
+] /; TrueQ[$AllowPackageRescoping] :=
+    (
+        ReleaseHold[p];
+        Sow[p];
+    );
+PackagePullDeclarationsAction[e : Except[Hold[Expression]]] :=
+    Sow@e;
 
 
-PackagePullDeclarations[pkgFile_]:=
-	pkgFile->
-		Cases[
-				Reap[
-					With[{f=OpenRead[pkgFile]},
-						Catch@
-							Do[
-								If[
-									Length[
-										ReadList[
-											f,
-											PackagePullDeclarationsAction@Hold[Expression],
-											1
-											]
-										]===0,
-										Throw[EndOfFile]
-									],
-								Infinity
-								];
-						Close[f]
-						]
-				][[2,1]],
-			s_Symbol?(
-				Function[Null,
-					Quiet[Context[#]===$Context],
-					HoldAllComplete
-					]
-					):>
-					HoldPattern[s],
-			Infinity
-			]
+PackagePullDeclarations[pkgFile_] :=
+    pkgFile ->
+        Cases[
+            Reap[
+                With[{f = OpenRead[pkgFile]},
+                    Catch@
+                        Do[
+                            If[
+                                Length[
+                                    ReadList[
+                                        f,
+                                        PackagePullDeclarationsAction@Hold[Expression],
+                                        1
+                                    ]
+                                ] === 0,
+                                Throw[EndOfFile]
+                            ],
+                            Infinity
+                        ];
+                    Close[f]
+                ]
+            ][[2, 1]],
+            s_Symbol?(
+                Function[Null,
+                    Quiet[Context[#] === $Context],
+                    HoldAllComplete
+                ]
+            ) :>
+                HoldPattern[s],
+            Infinity
+        ]
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageLoadPackage*)
 
 
-PackageLoadPackage[heldSym_,context_,pkgFile_->syms_]:=
-	Block[{
-		$loadingChain=
-			If[ListQ@$loadingChain,$loadingChain,{}],
-		$inLoad=TrueQ[$inLoad]
-		},
-		Internal`WithLocalSettings[
-			System`Private`NewContextPath@$ContextPath,
-			If[!MemberQ[$loadingChain,pkgFile],
-				AppendTo[$loadingChain, pkgFile];
-				With[{$$inLoad=$inLoad},
-					$inLoad=True;
-					If[$AllowPackageRecoloring,
-						Internal`SymbolList[False]
-						];
-					Replace[Thread[syms,HoldPattern],
-						Verbatim[HoldPattern][{s__}]:>Clear[s]
-						];
-					If[Not@MemberQ[$ContextPath,context],
-						$ContextPath=Prepend[$ContextPath,context];
-						];
-					Block[{PackageFEHiddenBlock=Null},
-						PackageAppGet[context,pkgFile];
-						];
-					Unprotect[$LoadedPackages];
-					AppendTo[$LoadedPackages, pkgFile];
-					Protect[$LoadedPackages];
-					If[!$$inLoad&&$AllowPackageRecoloring,
-						Internal`SymbolList[True]
-						];
-					ReleaseHold[heldSym]
-					]
-				],
-			System`Private`RestoreContextPath[]
-			]
-		];
+PackageLoadPackage[heldSym_, context_, pkgFile_ -> syms_] :=
+    Block[{
+        $loadingChain =
+            If[ListQ@$loadingChain, $loadingChain, {}],
+        $inLoad = TrueQ[$inLoad]
+    },
+        Internal`WithLocalSettings[
+            System`Private`NewContextPath@$ContextPath,
+            If[!MemberQ[$loadingChain, pkgFile],
+                AppendTo[$loadingChain, pkgFile];
+                With[{$$inLoad = $inLoad},
+                    $inLoad = True;
+                    If[$AllowPackageRecoloring,
+                        Internal`SymbolList[False]
+                    ];
+                    Replace[Thread[syms, HoldPattern],
+                        Verbatim[HoldPattern][{s__}] :> Clear[s]
+                    ];
+                    If[Not@MemberQ[$ContextPath, context],
+                        $ContextPath = Prepend[$ContextPath, context];
+                    ];
+                    Block[{PackageFEHiddenBlock = Null},
+                        PackageAppGet[context, pkgFile];
+                    ];
+                    Unprotect[$LoadedPackages];
+                    AppendTo[$LoadedPackages, pkgFile];
+                    Protect[$LoadedPackages];
+                    If[!$$inLoad && $AllowPackageRecoloring,
+                        Internal`SymbolList[True]
+                    ];
+                    ReleaseHold[heldSym]
+                ]
+            ],
+            System`Private`RestoreContextPath[]
+        ]
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageDeclarePackage*)
 
 
-PackageDeclarePackage[pkgFile_->syms_]:=
-	With[{c=$Context},
-		$DeclaredPackages[pkgFile]=syms;
-		$PackageFileContexts[pkgFile]=c;
-		Map[
-			If[True,
-				#:=PackageLoadPackage[#,c,pkgFile->syms]
-				]&,
-			syms
-			]
-		];
+PackageDeclarePackage[pkgFile_ -> syms_] :=
+    With[{c = $Context},
+        $DeclaredPackages[pkgFile] = syms;
+        $PackageFileContexts[pkgFile] = c;
+        Map[
+            If[True,
+                # := PackageLoadPackage[#, c, pkgFile -> syms]
+            ]&,
+            syms
+        ]
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageLoadDeclare*)
 
 
-PackageLoadDeclare[pkgFile_String]:=
-	If[!MemberQ[$LoadedPackages,pkgFile],
-		If[!KeyMemberQ[$DeclaredPackages,pkgFile],
-			PackageDeclarePackage@
-				PackagePullDeclarations[pkgFile]
-			],
-		PackageAppGet[pkgFile]
-		];
+PackageLoadDeclare[pkgFile_String] :=
+    If[!MemberQ[$LoadedPackages, pkgFile],
+        If[!KeyMemberQ[$DeclaredPackages, pkgFile],
+            PackageDeclarePackage@
+                PackagePullDeclarations[pkgFile]
+        ],
+        PackageAppGet[pkgFile]
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageAppLoad*)
 
 
-ScpMarkdown["Load", args___]:=
-	PackageAppLoad[args]
+ScpMarkdown["Load", args___] :=
+    PackageAppLoad[args]
 
 
-packageAppLoad[dir_, listing_]:=
-	With[
-		{
-			fileNames=
-				Select[
-					FileNames["*", dir],
-					DirectoryQ@#||MatchQ[FileExtension[#], "m"|"wl"]&
-					]
-			},
-		Replace[
-			Select[fileNames, 
-				StringMatchQ[
-					ToLowerCase@FileNameTake[#],
-					"__pre__."~~("m"|"wl")
-					]&
-				],
-			{f_}:>Get[f]
-			];
-		PackageAppLoad[
-			$PackageListing[listing]=
-				Select[fileNames, StringFreeQ["__"]@*FileBaseName]
-			];
-		Replace[
-			Select[fileNames, 
-				StringMatchQ[
-					ToLowerCase@FileNameTake[#], 
-					"__Post__."~~("m"|"wl")
-					]&
-				],
-			{f_}:>Get[f]
-			];
-		];
+packageAppLoad[dir_, listing_] :=
+    With[
+        {
+            fileNames =
+                Select[
+                    FileNames["*", dir],
+                    DirectoryQ@# || MatchQ[FileExtension[#], "m" | "wl"]&
+                ]
+        },
+        Replace[
+            Select[fileNames,
+                StringMatchQ[
+                    ToLowerCase@FileNameTake[#],
+                    "__pre__." ~~ ("m" | "wl")
+                ]&
+            ],
+            {f_} :> Get[f]
+        ];
+        PackageAppLoad[
+            $PackageListing[listing] =
+                Select[fileNames, StringFreeQ["__"]@*FileBaseName]
+        ];
+        Replace[
+            Select[fileNames,
+                StringMatchQ[
+                    ToLowerCase@FileNameTake[#],
+                    "__Post__." ~~ ("m" | "wl")
+                ]&
+            ],
+            {f_} :> Get[f]
+        ];
+    ];
 
 
-PackageAppLoad[dir_String?DirectoryQ]:=
-	If[StringMatchQ[FileBaseName@dir,(WordCharacter|"$")..],
-		Begin["`"<>FileBaseName[dir]<>"`"];
-		AppendTo[$PackageContexts, $Context];
-		packageAppLoad[dir, FileNameDrop[dir,FileNameDepth[$PackageDirectory]+1]];
-		End[];
-		];
-PackageAppLoad[file_String?FileExistsQ]:=
-	PackageLoadDeclare[file];
-PackageAppLoad[]:=
-	PackageExecute@
-		packageAppLoad[FileNameJoin@{$PackageDirectory,"Packages"}, $PackageName];
-PackageAppLoad~SetAttributes~Listable;
+PackageAppLoad[dir_String?DirectoryQ] :=
+    If[StringMatchQ[FileBaseName@dir, (WordCharacter | "$")..],
+        Begin["`" <> FileBaseName[dir] <> "`"];
+        AppendTo[$PackageContexts, $Context];
+        packageAppLoad[dir, FileNameDrop[dir, FileNameDepth[$PackageDirectory] + 1]];
+        End[];
+    ];
+PackageAppLoad[file_String?FileExistsQ] :=
+    PackageLoadDeclare[file];
+PackageAppLoad[] :=
+    PackageExecute@
+        packageAppLoad[FileNameJoin@{$PackageDirectory, "Packages"}, $PackageName];
+PackageAppLoad ~ SetAttributes ~ Listable;
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageAppGet*)
 
 
-ScpMarkdown["Get", f__]:=
-	PackageAppGet[f];
-PackageAppGet[f_]:=
-	PackageExecute@
-		With[{fBase = 
-			If[FileExistsQ@f,
-				f,
-				PackageFilePath["Packages",f<>".m"]
-				]
-			},
-			With[{cont = 
-				Most@
-					FileNameSplit[
-						FileNameDrop[fBase, FileNameDepth[PackageFilePath["Packages"]]]
-						]},
-				If[Length[cont]>0,
-					Begin[StringRiffle[Append[""]@Prepend[""]@cont, "`"]];
-					(End[];#)&@Get[fBase],
-					Get[fBase]
-				]
-			]
-		];
-PackageAppGet[c_,f_]:=
-	PackageExecute[
-		Begin[c];
-		(End[];#)&@
-			If[FileExistsQ@f,
-				Get@f;,
-				Get@PackageFilePath["Packages",f<>".m"]
-				]
-		];
+ScpMarkdown["Get", f__] :=
+    PackageAppGet[f];
+PackageAppGet[f_] :=
+    PackageExecute@
+        With[{fBase =
+            If[FileExistsQ@f,
+                f,
+                PackageFilePath["Packages", f <> ".m"]
+            ]
+        },
+            With[{cont =
+                Most@
+                    FileNameSplit[
+                        FileNameDrop[fBase, FileNameDepth[PackageFilePath["Packages"]]]
+                    ]},
+                If[Length[cont] > 0,
+                    Begin[StringRiffle[Append[""]@Prepend[""]@cont, "`"]];
+                    (End[];#)&@Get[fBase],
+                    Get[fBase]
+                ]
+            ]
+        ];
+PackageAppGet[c_, f_] :=
+    PackageExecute[
+        Begin[c];
+        (End[];#)&@
+            If[FileExistsQ@f,
+                Get@f;,
+                Get@PackageFilePath["Packages", f <> ".m"]
+            ]
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageAppNeeds*)
 
 
-ScpMarkdown["Needs", f___]:=
-	PackageAppNeeds[f];
+ScpMarkdown["Needs", f___] :=
+    PackageAppNeeds[f];
 
 
-PackageAppNeeds[pkgFile_String?FileExistsQ]:=
-	If[!MemberQ[$LoadedPackages,pkgFile],
-		If[KeyMemberQ[$DeclaredPackages,pkgFile],
-			PackageLoadDeclare[pkgFile],
-			Do[PackageLoadDeclare[pkgFile],2]
-			];
-		];
+PackageAppNeeds[pkgFile_String?FileExistsQ] :=
+    If[!MemberQ[$LoadedPackages, pkgFile],
+        If[KeyMemberQ[$DeclaredPackages, pkgFile],
+            PackageLoadDeclare[pkgFile],
+            Do[PackageLoadDeclare[pkgFile], 2]
+        ];
+    ];
 
 
-PackageAppNeeds[pkg_String]:=
-	If[FileExistsQ@PackageFilePath["Packages",pkg<>".m"],
-		PackageAppNeeds[PackageFilePath["Packages",pkg<>".m"]],
-		$Failed
-		];
+PackageAppNeeds[pkg_String] :=
+    If[FileExistsQ@PackageFilePath["Packages", pkg <> ".m"],
+        PackageAppNeeds[PackageFilePath["Packages", pkg <> ".m"]],
+        $Failed
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageScopeBlock*)
 
 
-$PackageScopeBlockEvalExpr=TrueQ[$PackageScopeBlockEvalExpr];
+$PackageScopeBlockEvalExpr = TrueQ[$PackageScopeBlockEvalExpr];
 PackageScopeBlock[
-	e_,
-	scope:_String?(StringFreeQ["`"]):"Package",
-	context:_String?(StringEndsQ["`"]):"`PackageScope`"
-	]/;TrueQ[$AllowPackageRescoping]:=
-	With[{
-		newcont=
-			If[StringStartsQ[context, "`"],
-				"ScpMarkdown"<>context<>scope<>"`",
-				context<>scope<>"`"
-				],
-		res=If[$PackageScopeBlockEvalExpr,e]
-		},
-		If[!MemberQ[$PackageContexts, newcont],
-			Unprotect[$PackageContexts];
-			AppendTo[$PackageContexts,newcont];
-			];
-		Replace[
-			Thread[
-				Cases[
-					HoldComplete[e],
-					sym_Symbol?(
-						Function[Null,
-							MemberQ[$PackageContexts,Quiet[Context[#]]],
-							HoldAllComplete
-							]
-						):>
-						HoldComplete[sym],
-					\[Infinity]
-					],
-				HoldComplete
-				],
-			HoldComplete[{s__}]:>
-				If[!$PackageDeclared&&ListQ@$PackageScopedSymbols,
-					$PackageScopedSymbols=
-						{
-							$PackageScopedSymbols,
-							newcont->
-								HoldComplete[s]
-							},
-					Block[{$AllowPackageRecoloring=True},
-						PackageFERehideSymbols[s]
-						];
-					Map[
-						Function[Null,
-							Quiet[
-								Check[
-									Set[Context[#], newcont],
-									Remove[#],
-									Context::cxdup
-									],
-								Context::cxdup
-								],
-							HoldAllComplete
-							],
-						HoldComplete[s]
-						]//ReleaseHold;
-					]
-			];
-		res
-		];
-PackageScopeBlock[e_, scope_String:"Package"]/;Not@TrueQ[$AllowPackageRescoping]:=
-	If[$PackageScopeBlockEvalExpr,e];
-PackageScopeBlock~SetAttributes~HoldFirst;
+    e_,
+    scope : _String?(StringFreeQ["`"]) : "Package",
+    context : _String?(StringEndsQ["`"]) : "`PackageScope`"
+] /; TrueQ[$AllowPackageRescoping] :=
+    With[{
+        newcont =
+            If[StringStartsQ[context, "`"],
+                "ScpMarkdown" <> context <> scope <> "`",
+                context <> scope <> "`"
+            ],
+        res = If[$PackageScopeBlockEvalExpr, e]
+    },
+        If[!MemberQ[$PackageContexts, newcont],
+            Unprotect[$PackageContexts];
+            AppendTo[$PackageContexts, newcont];
+        ];
+        Replace[
+            Thread[
+                Cases[
+                    HoldComplete[e],
+                    sym_Symbol?(
+                        Function[Null,
+                            MemberQ[$PackageContexts, Quiet[Context[#]]],
+                            HoldAllComplete
+                        ]
+                    ) :>
+                        HoldComplete[sym],
+                    \[Infinity]
+                ],
+                HoldComplete
+            ],
+            HoldComplete[{s__}] :>
+                If[!$PackageDeclared && ListQ@$PackageScopedSymbols,
+                    $PackageScopedSymbols =
+                        {
+                            $PackageScopedSymbols,
+                            newcont ->
+                                HoldComplete[s]
+                        },
+                    Block[{$AllowPackageRecoloring = True},
+                        PackageFERehideSymbols[s]
+                    ];
+                    Map[
+                        Function[Null,
+                            Quiet[
+                                Check[
+                                    Set[Context[#], newcont],
+                                    Remove[#],
+                                    Context::cxdup
+                                ],
+                                Context::cxdup
+                            ],
+                            HoldAllComplete
+                        ],
+                        HoldComplete[s]
+                    ] // ReleaseHold;
+                ]
+        ];
+        res
+    ];
+PackageScopeBlock[e_, scope_String : "Package"] /; Not@TrueQ[$AllowPackageRescoping] :=
+    If[$PackageScopeBlockEvalExpr, e];
+PackageScopeBlock ~ SetAttributes ~ HoldFirst;
 
 
 (* ::Subsubsection::Closed:: *)
@@ -687,24 +687,24 @@ PackageScopeBlock~SetAttributes~HoldFirst;
 
 
 PackageDecontext[
-	pkgFile_String?(KeyMemberQ[$DeclaredPackages,#]&),
-	scope:_String?(StringFreeQ["`"]):"Package",
-	context:_String?(StringEndsQ["`"]):"`PackageScope`"
-	]/;TrueQ[$AllowPackageRescoping]:=
-	With[{
-		names=$DeclaredPackages[pkgFile],
-		ctx=
-		 If[StringStartsQ[context, "`"],
-			"ScpMarkdown"<>context<>scope<>"`",
-			context<>scope<>"`"
-			]
-		},
-		Replace[names,
-			Verbatim[HoldPattern][s_]:>
-				Set[Context[s], ctx],
-			1
-			]
-		];
+    pkgFile_String?(KeyMemberQ[$DeclaredPackages, #]&),
+    scope : _String?(StringFreeQ["`"]) : "Package",
+    context : _String?(StringEndsQ["`"]) : "`PackageScope`"
+] /; TrueQ[$AllowPackageRescoping] :=
+    With[{
+        names = $DeclaredPackages[pkgFile],
+        ctx =
+            If[StringStartsQ[context, "`"],
+                "ScpMarkdown" <> context <> scope <> "`",
+                context <> scope <> "`"
+            ]
+    },
+        Replace[names,
+            Verbatim[HoldPattern][s_] :>
+                Set[Context[s], ctx],
+            1
+        ]
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -712,18 +712,18 @@ PackageDecontext[
 
 
 PackageRecontext[
-	pkgFile_String?(KeyMemberQ[$DeclaredPackages,#]&)
-	]/;TrueQ[$AllowPackageRescoping]:=
-	With[{
-		names=$DeclaredPackages[pkgFile],
-		ctx=PackageFileContext[pkgFile]
-		},
-		Replace[names,
-			Verbatim[HoldPattern][s_]:>
-				Set[Context[s],ctx],
-			1
-			]
-		];
+    pkgFile_String?(KeyMemberQ[$DeclaredPackages, #]&)
+] /; TrueQ[$AllowPackageRescoping] :=
+    With[{
+        names = $DeclaredPackages[pkgFile],
+        ctx = PackageFileContext[pkgFile]
+    },
+        Replace[names,
+            Verbatim[HoldPattern][s_] :>
+                Set[Context[s], ctx],
+            1
+        ]
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -735,18 +735,18 @@ End[]
 (*Dependencies*)
 
 
-ScpMarkdown::nodep="Couldn't load dependency `` of type ``";
-ScpMarkdown::nodup="Couldn't update dependency `` of type ``";
+ScpMarkdown::nodep = "Couldn't load dependency `` of type ``";
+ScpMarkdown::nodup = "Couldn't update dependency `` of type ``";
 
 
-PackageExtendContextPath::usage="";
-PackageInstallPackageDependency::usage="";
-PackageLoadPackageDependency::usage="";
-PackageCheckPacletDependency::usage="";
-PackageInstallPacletDependency::usage="";
-PackageLoadPacletDependency::usage="";
-PackageUpdatePacletDependency::usage="";
-PackageLoadResourceDependency::usage="";
+PackageExtendContextPath::usage = "";
+PackageInstallPackageDependency::usage = "";
+PackageLoadPackageDependency::usage = "";
+PackageCheckPacletDependency::usage = "";
+PackageInstallPacletDependency::usage = "";
+PackageLoadPacletDependency::usage = "";
+PackageUpdatePacletDependency::usage = "";
+PackageLoadResourceDependency::usage = "";
 
 
 (* ::Subsubsection::Closed:: *)
@@ -760,281 +760,281 @@ Begin["`Dependencies`"];
 (*PackageExtendContextPath*)
 
 
-PackageExtendContextPath[cp:{__String}]:=
-	(
-		Unprotect[$PackageContexts];
-		$PackageContexts=
-			DeleteCases[
-				DeleteDuplicates@
-					Join[$PackageContexts, cp],
-				"System`"|"Global`"
-				];
-		(* Should I protect it again? *)
-		)
+PackageExtendContextPath[cp : {__String}] :=
+    (
+        Unprotect[$PackageContexts];
+        $PackageContexts =
+            DeleteCases[
+                DeleteDuplicates@
+                    Join[$PackageContexts, cp],
+                "System`" | "Global`"
+            ];
+    (* Should I protect it again? *)
+    )
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageInstallPackageDependency*)
 
 
-Options[PackageInstallPackageDependency]=
-	{
-		"Permanent"->False
-		};
-PackageInstallPackageDependency[dep_String, ops:OptionsPattern[]]:=
-	Block[{retcode, site, path, file, tmp},
-		path=
-			StringSplit[StringTrim[dep, "`"]<>If[FileExtension[dep]=="", ".m", ""], "`"];
-		site=
-			Replace[OptionValue["Site"],
-				{
-					s_String?(
-						URLParse[#, "Domain"]==="github.com"&
-						):>
-					URLBuild@
-						<|
-							"Scheme"->"http",
-							"Domain"->"raw.githubusercontent.com",
-							"Path"->
-								Function[If[Length[#]==2, Append[#, "master"], #]]@
-									DeleteCases[""]@URLParse[s, "Path"]
-							|>,
-					_->
-						"http://raw.githubusercontent.com/paclets/PackageServer/master/Listing"
-					}
-				];
-			file=
-				If[TrueQ@OptionValue["Permanent"],
-					FileNameJoin@{$UserBaseDirectory, "Applications", Last@path},
-					FileNameJoin@{$TemporaryDirectory, "Applications", Last@path}
-					];
-			tmp=CreateFile[];
-			Monitor[
-				retcode=URLDownload[URLBuild[Prepend[site], path], tmp, "StatusCode"],
-				Internal`LoadingPanel[
-					TemplateApply[
-						"Loading package `` from site ``",
-						{URLBuild@path, site}
-						]
-					]
-				];
-			If[retcode<300,
-				CopyFile[tmp, file,
-					OverwriteTarget->Not@TrueQ@OptionValue["Permanent"]
-					];
-				DeleteFile[tmp];
-				file,
-				Message[ScpMarkdown::nodep, dep, "Package"];
-				DeleteFile[tmp];
-				$Failed
-				]
-			];
+Options[PackageInstallPackageDependency] =
+    {
+        "Permanent" -> False
+    };
+PackageInstallPackageDependency[dep_String, ops : OptionsPattern[]] :=
+    Block[{retcode, site, path, file, tmp},
+        path =
+            StringSplit[StringTrim[dep, "`"] <> If[FileExtension[dep] == "", ".m", ""], "`"];
+        site =
+            Replace[OptionValue["Site"],
+                {
+                    s_String?(
+                        URLParse[#, "Domain"] === "github.com"&
+                    ) :>
+                        URLBuild@
+                            <|
+                                "Scheme" -> "http",
+                                "Domain" -> "raw.githubusercontent.com",
+                                "Path" ->
+                                    Function[If[Length[#] == 2, Append[#, "master"], #]]@
+                                        DeleteCases[""]@URLParse[s, "Path"]
+                            |>,
+                    _ ->
+                        "http://raw.githubusercontent.com/paclets/PackageServer/master/Listing"
+                }
+            ];
+        file =
+            If[TrueQ@OptionValue["Permanent"],
+                FileNameJoin@{$UserBaseDirectory, "Applications", Last@path},
+                FileNameJoin@{$TemporaryDirectory, "Applications", Last@path}
+            ];
+        tmp = CreateFile[];
+        Monitor[
+            retcode = URLDownload[URLBuild[Prepend[site], path], tmp, "StatusCode"],
+            Internal`LoadingPanel[
+                TemplateApply[
+                    "Loading package `` from site ``",
+                    {URLBuild@path, site}
+                ]
+            ]
+        ];
+        If[retcode < 300,
+            CopyFile[tmp, file,
+                OverwriteTarget -> Not@TrueQ@OptionValue["Permanent"]
+            ];
+            DeleteFile[tmp];
+            file,
+            Message[ScpMarkdown::nodep, dep, "Package"];
+            DeleteFile[tmp];
+            $Failed
+        ]
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageLoadPackageDependency*)
 
 
-Options[PackageLoadPackageDependency]=
-	Options[PackageInstallPackageDependency];
-PackageLoadPackageDependency[dep_String, ops:OptionsPattern[]]:=
-	Internal`WithLocalSettings[
-		BeginPackage[dep];,
-		If[Quiet@Check[Needs[dep], $Failed]===$Failed&&
-				Quiet@Check[
-					Get[FileNameJoin@@
-						StringSplit[
-							StringTrim[dep, "`"]<>If[FileExtension[dep]=="", ".m", ""], 
-							"`"
-							]
-						], 
-					$Failed]===$Failed,
-			Replace[PackageInstallPacletDependency[dep, ops],
-				f:_String|_File:>Get[f]
-				]
-			];
-		PackageExtendContextPath@
-			Select[$Packages, StringStartsQ[dep]];,
-		EndPackage[];
-		]
+Options[PackageLoadPackageDependency] =
+    Options[PackageInstallPackageDependency];
+PackageLoadPackageDependency[dep_String, ops : OptionsPattern[]] :=
+    Internal`WithLocalSettings[
+        BeginPackage[dep];,
+        If[Quiet@Check[Needs[dep], $Failed] === $Failed &&
+            Quiet@Check[
+                Get[FileNameJoin @@
+                    StringSplit[
+                        StringTrim[dep, "`"] <> If[FileExtension[dep] == "", ".m", ""],
+                        "`"
+                    ]
+                ],
+                $Failed] === $Failed,
+            Replace[PackageInstallPacletDependency[dep, ops],
+                f : _String | _File :> Get[f]
+            ]
+        ];
+        PackageExtendContextPath@
+            Select[$Packages, StringStartsQ[dep]];,
+        EndPackage[];
+    ]
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageCheckPacletDependency*)
 
 
-PackageCheckPacletDependency[dep_]:=
-	Length@PacletManager`PacletFind[StringDelete[dep, "`"]]>0
+PackageCheckPacletDependency[dep_] :=
+    Length@PacletManager`PacletFind[StringDelete[dep, "`"]] > 0
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageInstallPacletDependency*)
 
 
-Options[PackageInstallPacletDependency]=
-	Options[PacletManager`PacletInstall];
+Options[PackageInstallPacletDependency] =
+    Options[PacletManager`PacletInstall];
 PackageInstallPacletDependency[
-	deps:{__String?(
-		StringMatchQ[
-			(LetterCharacter|"_"|"`")~~(WordCharacter|"_"|"`")..
-			]
-		)}, 
-	ops:OptionsPattern[]
-	]:=
-	Block[{site, pacs, pac},
-		pacs=
-			StringDelete[deps, "`"];
-		site=
-			Replace[OptionValue["Site"],
-				{
-					s_String?(
-						URLParse[#, "Domain"]==="github.com"&
-						):>
-					URLBuild@
-						<|
-							"Scheme"->"http",
-							"Domain"->"raw.githubusercontent.com",
-							"Path"->
-								Function[If[Length[#]==2, Append[#, "master"], #]]@
-									DeleteCases[""]@URLParse[s, "Path"]
-							|>,
-					None->
-						Automatic,
-					_->
-						"http://raw.githubusercontent.com/paclets/PacletServer/master"
-					}
-				];
-		pac=First@pacs;
-		Monitor[
-			MapThread[
-				Check[
-					PacletManager`PacletInstall[
-						pac=#,
-						"Site"->site,
-						ops
-						],
-					Message[ScpMarkdown::nodep, #2, "Paclet"];
-					$Failed
-					]&,
-				{
-					pacs,
-					deps
-					}
-				],
-			Internal`LoadingPanel[
-				TemplateApply[
-					"Loading paclet `` from site ``",
-					{pac, site}
-					]
-				]
-			]
-		]
+    deps : {__String?(
+        StringMatchQ[
+            (LetterCharacter | "_" | "`") ~~ (WordCharacter | "_" | "`")..
+        ]
+    )},
+    ops : OptionsPattern[]
+] :=
+    Block[{site, pacs, pac},
+        pacs =
+            StringDelete[deps, "`"];
+        site =
+            Replace[OptionValue["Site"],
+                {
+                    s_String?(
+                        URLParse[#, "Domain"] === "github.com"&
+                    ) :>
+                        URLBuild@
+                            <|
+                                "Scheme" -> "http",
+                                "Domain" -> "raw.githubusercontent.com",
+                                "Path" ->
+                                    Function[If[Length[#] == 2, Append[#, "master"], #]]@
+                                        DeleteCases[""]@URLParse[s, "Path"]
+                            |>,
+                    None ->
+                        Automatic,
+                    _ ->
+                        "http://raw.githubusercontent.com/paclets/PacletServer/master"
+                }
+            ];
+        pac = First@pacs;
+        Monitor[
+            MapThread[
+                Check[
+                    PacletManager`PacletInstall[
+                        pac = #,
+                        "Site" -> site,
+                        ops
+                    ],
+                    Message[ScpMarkdown::nodep, #2, "Paclet"];
+                    $Failed
+                ]&,
+                {
+                    pacs,
+                    deps
+                }
+            ],
+            Internal`LoadingPanel[
+                TemplateApply[
+                    "Loading paclet `` from site ``",
+                    {pac, site}
+                ]
+            ]
+        ]
+    ]
 
 
 PackageInstallPacletDependency[
-	dep:_String?(
-		StringMatchQ[
-			(LetterCharacter|"_"|"`")~~(WordCharacter|"_"|"`")..
-			]
-		), 
-	ops:OptionsPattern[]
-	]:=First@PackageInstallPacletDependency[{dep}, ops]
+    dep : _String?(
+        StringMatchQ[
+            (LetterCharacter | "_" | "`") ~~ (WordCharacter | "_" | "`")..
+        ]
+    ),
+    ops : OptionsPattern[]
+] := First@PackageInstallPacletDependency[{dep}, ops]
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageLoadPacletDependency*)
 
 
-Options[PackageLoadPacletDependency]=
-	Join[
-		Options[PackageInstallPacletDependency],
-		{
-			"Update"->False
-			}
-		];
-PackageLoadPacletDependency[dep_String?(StringEndsQ["`"]), ops:OptionsPattern[]]:=
-	Internal`WithLocalSettings[
-		System`Private`NewContextPath[{dep, "System`"}];,
-		If[PackageCheckPacletDependency[dep],
-			If[TrueQ@OptionValue["Update"],
-				PackageUpdatePacletDependency[dep,
-					"Sites"->Replace[OptionValue["Site"], s_String:>{s}]
-					]
-				],
-			PackageInstallPacletDependency[dep, ops]
-			];
-		Needs[dep];
-		PackageExtendContextPath@
-			Select[$Packages, 
-				StringStartsQ[#, dep]&&StringFreeQ[#, "`Private`"]&
-				];,
-		System`Private`RestoreContextPath[];
-		]
+Options[PackageLoadPacletDependency] =
+    Join[
+        Options[PackageInstallPacletDependency],
+        {
+            "Update" -> False
+        }
+    ];
+PackageLoadPacletDependency[dep_String?(StringEndsQ["`"]), ops : OptionsPattern[]] :=
+    Internal`WithLocalSettings[
+        System`Private`NewContextPath[{dep, "System`"}];,
+        If[PackageCheckPacletDependency[dep],
+            If[TrueQ@OptionValue["Update"],
+                PackageUpdatePacletDependency[dep,
+                    "Sites" -> Replace[OptionValue["Site"], s_String :> {s}]
+                ]
+            ],
+            PackageInstallPacletDependency[dep, ops]
+        ];
+        Needs[dep];
+        PackageExtendContextPath@
+            Select[$Packages,
+                StringStartsQ[#, dep] && StringFreeQ[#, "`Private`"]&
+            ];,
+        System`Private`RestoreContextPath[];
+    ]
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageUpdatePacletDependency*)
 
 
-Options[PackageUpdatePacletDependency]=
-	{
-		"Sites"->Automatic
-		};
+Options[PackageUpdatePacletDependency] =
+    {
+        "Sites" -> Automatic
+    };
 PackageUpdatePacletDependency[
-	deps:{__String?(StringMatchQ[(LetterCharacter|"_")~~(WordCharacter|"_")..])}, 
-	ops:OptionsPattern[]
-	]:=
-	Block[
-		{
-			added=<||>,
-			ps=PacletManager`PacletSites[],
-			pac
-			},
-		Replace[
-			Replace[OptionValue["Sites"], 
-				Automatic:>"http://raw.githubusercontent.com/paclets/PacletServer/master"
-				],
-			{
-				s_String:>
-					If[!MemberQ[ps, PacletManager`PacletSite[s, ___]],
-						added[s]=True
-						],
-				p:PacletManager`PacletSite[__]:>
-					If[!MemberQ[ps, p],
-						added[p]=True
-						]
-				},
-			1
-			];
-		pac=StringDelete[deps[[1]], "`"];
-		Internal`WithLocalSettings[
-			KeyMap[PacletManager`PacletSiteAdd, added],
-			Monitor[
-				MapThread[
-					Check[
-						PacletManager`PacletCheckUpdate[pac=#],
-						Message[ScpMarkdown::nodup, #2, "Paclet"];
-						$Failed
-						]&,
-					{
-						StringDelete[deps, "`"],
-						deps
-						}
-					],
-				Internal`LoadingPanel[
-					"Updating paclet ``"~TemplateApply~pac
-					]
-				],
-			KeyMap[PacletManager`PacletSiteRemove, added]
-			]
-		];
+    deps : {__String?(StringMatchQ[(LetterCharacter | "_") ~~ (WordCharacter | "_")..])},
+    ops : OptionsPattern[]
+] :=
+    Block[
+        {
+            added = <||>,
+            ps = PacletManager`PacletSites[],
+            pac
+        },
+        Replace[
+            Replace[OptionValue["Sites"],
+                Automatic :> "http://raw.githubusercontent.com/paclets/PacletServer/master"
+            ],
+            {
+                s_String :>
+                    If[!MemberQ[ps, PacletManager`PacletSite[s, ___]],
+                        added[s] = True
+                    ],
+                p : PacletManager`PacletSite[__] :>
+                    If[!MemberQ[ps, p],
+                        added[p] = True
+                    ]
+            },
+            1
+        ];
+        pac = StringDelete[deps[[1]], "`"];
+        Internal`WithLocalSettings[
+            KeyMap[PacletManager`PacletSiteAdd, added],
+            Monitor[
+                MapThread[
+                    Check[
+                        PacletManager`PacletCheckUpdate[pac = #],
+                        Message[ScpMarkdown::nodup, #2, "Paclet"];
+                        $Failed
+                    ]&,
+                    {
+                        StringDelete[deps, "`"],
+                        deps
+                    }
+                ],
+                Internal`LoadingPanel[
+                    "Updating paclet ``" ~ TemplateApply ~ pac
+                ]
+            ],
+            KeyMap[PacletManager`PacletSiteRemove, added]
+        ]
+    ];
 
 
 PackageUpdatePacletDependency[
-	dep:_String?(StringMatchQ[(LetterCharacter|"_")~~(WordCharacter|"_")..]), 
-	ops:OptionsPattern[]
-	]:=
-	First@PackageUpdatePacletDependency[{dep}, ops]
+    dep : _String?(StringMatchQ[(LetterCharacter | "_") ~~ (WordCharacter | "_")..]),
+    ops : OptionsPattern[]
+] :=
+    First@PackageUpdatePacletDependency[{dep}, ops]
 
 
 (* ::Subsubsection:: *)
@@ -1054,20 +1054,20 @@ End[]
 (*Exceptions*)
 
 
-PackageExceptionBlock::usage="";
+PackageExceptionBlock::usage = "";
 
 
-PackageThrowException::usage="";
-PackageCatchException::usage="";
-PackageCatchExceptionCallback::usage="";
+PackageThrowException::usage = "";
+PackageCatchException::usage = "";
+PackageCatchExceptionCallback::usage = "";
 
 
-PackageThrowMessage::usage="";
-PackageCatchMessage::usage="";
+PackageThrowMessage::usage = "";
+PackageCatchMessage::usage = "";
 
 
-PackageFailureException::usage="";
-PackageRaiseException::usage="";
+PackageFailureException::usage = "";
+PackageRaiseException::usage = "";
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1081,241 +1081,241 @@ Begin["`Exceptions`Private`"]
 (*PackageThrowException*)
 
 
-PackageThrowException[value:Except[_Failure], tag:_String:"Failure"]:=
-	Throw[value, $PackageName<>tag];
-PackageThrowException[f_Failure]:=
-	Throw[f, f[[1]]];
+PackageThrowException[value : Except[_Failure], tag : _String : "Failure"] :=
+    Throw[value, $PackageName <> tag];
+PackageThrowException[f_Failure] :=
+    Throw[f, f[[1]]];
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageCatchException*)
 
 
-$PackageCatchCallback=(#&);
+$PackageCatchCallback = (#&);
 
 
-PackageCatchExceptionHandler[tag_]:=
-	$PackageCatchCallback;
+PackageCatchExceptionHandler[tag_] :=
+    $PackageCatchCallback;
 
 
 PackageCatchException[
-	expr:Except[_String], 
-	tag:_String:"Failure", 
-	callback_:Automatic
-	]:=
-	Catch[expr, 
-		$PackageName<>tag, 
-		Replace[callback, Automatic:>PackageCatchExceptionHandler[tag]]
-		];
-PackageCatchException[tag_String, callback_:Automatic]:=
-	Function[Null,
-		PackageCatchException[#, tag, callback],
-		HoldFirst
-		];
-PackageCatchException~SetAttributes~HoldFirst
+    expr : Except[_String],
+    tag : _String : "Failure",
+    callback_ : Automatic
+] :=
+    Catch[expr,
+        $PackageName <> tag,
+        Replace[callback, Automatic :> PackageCatchExceptionHandler[tag]]
+    ];
+PackageCatchException[tag_String, callback_ : Automatic] :=
+    Function[Null,
+        PackageCatchException[#, tag, callback],
+        HoldFirst
+    ];
+PackageCatchException ~ SetAttributes ~ HoldFirst
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageThrowMessage*)
 
 
-$PackageErrorMessage=
-	"ScpMarkdown encountered exception ``";
+$PackageErrorMessage =
+    "ScpMarkdown encountered exception ``";
 
 
-Options[PackageThrowMessage]=
-	{
-		"MessageParameters":>{}
-		};
+Options[PackageThrowMessage] =
+    {
+        "MessageParameters" :> {}
+    };
 PackageThrowMessage[
-	msg_MessageName, 
-	body_String,
-	ops:OptionsPattern[]
-	]:=
-	(
-		Set[msg, body];
-		Message[msg, Sequence@@OptionValue["MessageParameters"]]
-		);
+    msg_MessageName,
+    body_String,
+    ops : OptionsPattern[]
+] :=
+    (
+        Set[msg, body];
+        Message[msg, Sequence @@ OptionValue["MessageParameters"]]
+    );
 PackageThrowMessage[
-	tag_?StringQ,
-	body_String,
-	ops:OptionsPattern[]
-	]:=
-	PackageThrowMessage[
-		MessageName[ScpMarkdown, tag],
-		body,
-		ops
-		];
+    tag_?StringQ,
+    body_String,
+    ops : OptionsPattern[]
+] :=
+    PackageThrowMessage[
+        MessageName[ScpMarkdown, tag],
+        body,
+        ops
+    ];
 PackageThrowMessage[
-	tag_?StringQ
-	]:=
-	PackageThrowMessage[
-		MessageName[ScpMarkdown, tag],
-		$PackageErrorMessage,
-		"MessageParameters"->{tag}
-		];
-PackageThrowMessage~SetAttributes~HoldAll
+    tag_?StringQ
+] :=
+    PackageThrowMessage[
+        MessageName[ScpMarkdown, tag],
+        $PackageErrorMessage,
+        "MessageParameters" -> {tag}
+    ];
+PackageThrowMessage ~ SetAttributes ~ HoldAll
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageCatchMessage*)
 
 
-$PackageCatchMessageMessage=
-	"Check caught exceptions ``";
+$PackageCatchMessageMessage =
+    "Check caught exceptions ``";
 
 
-$PackageCatchMessageCallback=
-	Function[
-		PackageRaiseException[
-			"Check",
-			$PackageCatchMessageMessage,
-			"MessageParameters"->Thread[HoldForm[$MessageList]]
-			]
-		];
+$PackageCatchMessageCallback =
+    Function[
+        PackageRaiseException[
+            "Check",
+            $PackageCatchMessageMessage,
+            "MessageParameters" -> Thread[HoldForm[$MessageList]]
+        ]
+    ];
 
 
 PackageCatchMessage[
-	expr_,
-	failexpr_:Automatic,
-	msg:{___String}:{}
-	]:=
-	Replace[
-		Thread[Map[Hold[MessageName[ScpMarkdown, #]]&, msg], Hold],
-		{
-			{}:>
-				Check[expr, 
-					Replace[failexpr, {Automatic:>$PackageCatchMessageCallback[]}]
-					],
-			Hold[msgs_]:>
-				Check[expr, 
-					Replace[failexpr, {Automatic:>$PackageCatchMessageCallback[]}], 
-					msgs
-					],
-			_:>
-				Replace[failexpr, {Automatic:>$PackageCatchMessageCallback[]}]
-			}
-		];
-PackageCatchMessage~SetAttributes~HoldAll;
+    expr_,
+    failexpr_ : Automatic,
+    msg : {___String} : {}
+] :=
+    Replace[
+        Thread[Map[Hold[MessageName[ScpMarkdown, #]]&, msg], Hold],
+        {
+            {} :>
+                Check[expr,
+                    Replace[failexpr, {Automatic :> $PackageCatchMessageCallback[]}]
+                ],
+            Hold[msgs_] :>
+                Check[expr,
+                    Replace[failexpr, {Automatic :> $PackageCatchMessageCallback[]}],
+                    msgs
+                ],
+            _ :>
+                Replace[failexpr, {Automatic :> $PackageCatchMessageCallback[]}]
+        }
+    ];
+PackageCatchMessage ~ SetAttributes ~ HoldAll;
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageFailureException*)
 
 
-Options[PackageFailureException]=
-	Options[PackageThrowMessage];
+Options[PackageFailureException] =
+    Options[PackageThrowMessage];
 PackageFailureException[
-	msg_MessageName,
-	body_?StringQ,
-	ops:OptionsPattern[]
-	]:=
-	Replace[
-		OptionValue[Automatic, Automatic, "MessageParameters", Hold],
-		Hold[params_]:>
-			Failure[
-				$PackageName<>Hold[msg][[1, 2]],
-				<|
-					"MessageTemplate":>
-						msg,
-					"MessageParameters":>
-						params
-					|>
-				]
-		];
+    msg_MessageName,
+    body_?StringQ,
+    ops : OptionsPattern[]
+] :=
+    Replace[
+        OptionValue[Automatic, Automatic, "MessageParameters", Hold],
+        Hold[params_] :>
+            Failure[
+                $PackageName <> Hold[msg][[1, 2]],
+                <|
+                    "MessageTemplate" :>
+                        msg,
+                    "MessageParameters" :>
+                        params
+                |>
+            ]
+    ];
 PackageFailureException[
-	tag:_?StringQ:"Exception",
-	body_?StringQ,
-	ops:OptionsPattern[]
-	]:=
-	(
-		Set[MessageName[ScpMarkdown, tag], body];
-		PackageFailureException[
-			MessageName[ScpMarkdown, tag],
-			body,
-			ops
-			]
-		);
-PackageFailureException~SetAttributes~HoldFirst
+    tag : _?StringQ : "Exception",
+    body_?StringQ,
+    ops : OptionsPattern[]
+] :=
+    (
+        Set[MessageName[ScpMarkdown, tag], body];
+        PackageFailureException[
+            MessageName[ScpMarkdown, tag],
+            body,
+            ops
+        ]
+    );
+PackageFailureException ~ SetAttributes ~ HoldFirst
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageRaiseException*)
 
 
-Options[PackageRaiseException]=
-	Options[PackageFailureException]
+Options[PackageRaiseException] =
+    Options[PackageFailureException]
 PackageRaiseException[
-	msg_MessageName,
-	body_?StringQ,
-	ops:OptionsPattern[]
-	]:=
-	(
-		PackageThrowMessage[msg, body, 
-			Evaluate@FilterRules[{ops}, Options[PackageThrowMessage]]
-			];
-		PackageThrowException[
-			PackageFailureException[msg, body, ops]
-			]
-		);
+    msg_MessageName,
+    body_?StringQ,
+    ops : OptionsPattern[]
+] :=
+    (
+        PackageThrowMessage[msg, body,
+            Evaluate@FilterRules[{ops}, Options[PackageThrowMessage]]
+        ];
+        PackageThrowException[
+            PackageFailureException[msg, body, ops]
+        ]
+    );
 PackageRaiseException[
-	tag_?StringQ,
-	body_String,
-	ops:OptionsPattern[]
-	]:=
-	PackageRaiseException[
-		MessageName[ScpMarkdown, tag],
-		body,
-		ops
-		];
-PackageRaiseException[tag_?StringQ]:=
-	PackageRaiseException[
-		tag,
-		$PackageErrorMessage,
-		"MessageParameters"->{tag}
-		];
-PackageRaiseException~SetAttributes~HoldFirst
+    tag_?StringQ,
+    body_String,
+    ops : OptionsPattern[]
+] :=
+    PackageRaiseException[
+        MessageName[ScpMarkdown, tag],
+        body,
+        ops
+    ];
+PackageRaiseException[tag_?StringQ] :=
+    PackageRaiseException[
+        tag,
+        $PackageErrorMessage,
+        "MessageParameters" -> {tag}
+    ];
+PackageRaiseException ~ SetAttributes ~ HoldFirst
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageExceptionBlock*)
 
 
-$PackageErrorStackDepth=0;
+$PackageErrorStackDepth = 0;
 Protect[$PackageErrorStackDepth];
 
 
-PackageExceptionBlock//Clear
-PackageExceptionBlock/:
-	HoldPattern[
-		SetDelayed[lhs_, 
-			peb:PackageExceptionBlock[_, _String]
-			]
-		]:=
-	SetDelayed[lhs,
-		Block[{$PackageExceptionBlockResult},
-			$PackageExceptionBlockResult=peb;
-			peb/;!FailureQ@peb
-			]
-		];
+PackageExceptionBlock // Clear
+PackageExceptionBlock /:
+    HoldPattern[
+        SetDelayed[lhs_,
+            peb : PackageExceptionBlock[_, _String]
+        ]
+    ] :=
+    SetDelayed[lhs,
+        Block[{$PackageExceptionBlockResult},
+            $PackageExceptionBlockResult = peb;
+            peb /; !FailureQ@peb
+        ]
+    ];
 PackageExceptionBlock[
-	expr_,
-	tag_String
-	]:=
-	Block[
-		{
-			$PackageErrorStackDepth=$PackageErrorStackDepth+1,
-			result
-			},
-		result=PackageCatchException[expr, tag, #&];
-		If[FailureQ@result&&$PackageErrorStackDepth>1,
-			PackageThrowException[result]
-			];
-		result(*/;!FailureQ@result*)
-		];
-PackageExceptionBlock[tag_String]:=
-	Function[Null, PackageExceptionBlock[#, tag], HoldFirst];
-PackageExceptionBlock~SetAttributes~HoldFirst;
+    expr_,
+    tag_String
+] :=
+    Block[
+        {
+            $PackageErrorStackDepth = $PackageErrorStackDepth + 1,
+            result
+        },
+        result = PackageCatchException[expr, tag, #&];
+        If[FailureQ@result && $PackageErrorStackDepth > 1,
+            PackageThrowException[result]
+        ];
+        result(*/;!FailureQ@result*)
+    ];
+PackageExceptionBlock[tag_String] :=
+    Function[Null, PackageExceptionBlock[#, tag], HoldFirst];
+PackageExceptionBlock ~ SetAttributes ~ HoldFirst;
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1327,7 +1327,7 @@ End[]
 (*Autocompletion*)
 
 
-PackageAddAutocompletions::usage="";
+PackageAddAutocompletions::usage = "";
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1341,158 +1341,158 @@ Begin["`Autocomplete`"];
 (*Formats*)
 
 
-$PackageAutoCompletionFormats=
-	Alternatives@@Join@@{
-		Range[0,9],
-		{
-			_String?(FileExtension[#]==="trie"&),
-			{
-				_String|(Alternatives@@Range[0,9])|{__String},
-				(("URI"|"DependsOnArgument")->_)...
-				},
-			{
-				_String|(Alternatives@@Range[0,9])|{__String},
-				(("URI"|"DependsOnArgument")->_)...,
-				(_String|(Alternatives@@Range[0,9])|{__String})
-				},
-			{
-				__String
-				}
-			},
-		{
-			"codingNoteFontCom",
-			"ConvertersPath",
-			"ExternalDataCharacterEncoding",
-			"MenuListCellTags",
-			"MenuListConvertFormatTypes",
-			"MenuListDisplayAsFormatTypes",
-			"MenuListFonts",
-			"MenuListGlobalEvaluators",
-			"MenuListHelpWindows",
-			"MenuListNotebookEvaluators",
-			"MenuListNotebooksMenu",
-			"MenuListPackageWindows",
-			"MenuListPalettesMenu",
-			"MenuListPaletteWindows",
-			"MenuListPlayerWindows",
-			"MenuListPrintingStyleEnvironments",
-			"MenuListQuitEvaluators",
-			"MenuListScreenStyleEnvironments",
-			"MenuListStartEvaluators",
-			"MenuListStyleDefinitions",
-			"MenuListStyles",
-			"MenuListStylesheetWindows",
-			"MenuListTextWindows",
-			"MenuListWindows",
-			"PrintingStyleEnvironment",
-			"ScreenStyleEnvironment",
-			"Style"
-			}
-		};
+$PackageAutoCompletionFormats =
+    Alternatives @@ Join @@ {
+        Range[0, 9],
+        {
+            _String?(FileExtension[#] === "trie"&),
+            {
+                _String | (Alternatives @@ Range[0, 9]) | {__String},
+                (("URI" | "DependsOnArgument") -> _)...
+            },
+            {
+                _String | (Alternatives @@ Range[0, 9]) | {__String},
+                (("URI" | "DependsOnArgument") -> _)...,
+                (_String | (Alternatives @@ Range[0, 9]) | {__String})
+            },
+            {
+                __String
+            }
+        },
+        {
+            "codingNoteFontCom",
+            "ConvertersPath",
+            "ExternalDataCharacterEncoding",
+            "MenuListCellTags",
+            "MenuListConvertFormatTypes",
+            "MenuListDisplayAsFormatTypes",
+            "MenuListFonts",
+            "MenuListGlobalEvaluators",
+            "MenuListHelpWindows",
+            "MenuListNotebookEvaluators",
+            "MenuListNotebooksMenu",
+            "MenuListPackageWindows",
+            "MenuListPalettesMenu",
+            "MenuListPaletteWindows",
+            "MenuListPlayerWindows",
+            "MenuListPrintingStyleEnvironments",
+            "MenuListQuitEvaluators",
+            "MenuListScreenStyleEnvironments",
+            "MenuListStartEvaluators",
+            "MenuListStyleDefinitions",
+            "MenuListStyles",
+            "MenuListStylesheetWindows",
+            "MenuListTextWindows",
+            "MenuListWindows",
+            "PrintingStyleEnvironment",
+            "ScreenStyleEnvironment",
+            "Style"
+        }
+    };
 
 
 (* ::Subsubsection::Closed:: *)
 (*AddAutocompletions Base*)
 
 
-PackageAddAutocompletions[pats:{(_String->{$PackageAutoCompletionFormats..})..}]/;
-	TrueQ[$AllowPackageAutocompletions]:=
-	If[$Notebooks&&
-		Internal`CachedSystemInformation["FrontEnd","VersionNumber"]>10.0,
-		FrontEndExecute@FrontEnd`Value@
-			Map[
-				FEPrivate`AddSpecialArgCompletion[#]&,
-				pats
-				],
-		$Failed
-		];
-PackageAddAutocompletions[pat:(_String->{$PackageAutoCompletionFormats..})]/;
-	TrueQ[$AllowPackageAutocompletions]:=
-	PackageAddAutocompletions[{pat}];
+PackageAddAutocompletions[pats : {(_String -> {$PackageAutoCompletionFormats..})..}] /;
+    TrueQ[$AllowPackageAutocompletions] :=
+    If[$Notebooks &&
+        Internal`CachedSystemInformation["FrontEnd", "VersionNumber"] > 10.0,
+        FrontEndExecute@FrontEnd`Value@
+            Map[
+                FEPrivate`AddSpecialArgCompletion[#]&,
+                pats
+            ],
+        $Failed
+    ];
+PackageAddAutocompletions[pat : (_String -> {$PackageAutoCompletionFormats..})] /;
+    TrueQ[$AllowPackageAutocompletions] :=
+    PackageAddAutocompletions[{pat}];
 
 
 (* ::Subsubsection::Closed:: *)
 (*AddAutocompletions Helpers*)
 
 
-$PackageAutocompletionAliases=
-	{
-		"None"|None|Normal->0,
-		"AbsoluteFileName"|AbsoluteFileName->2,
-		"FileName"|File|FileName->3,
-		"Color"|RGBColor|Hue|XYZColor->4,
-		"Package"|Package->7,
-		"Directory"|Directory->8,
-		"Interpreter"|Interpreter->9,
-		"Notebook"|Notebook->"MenuListNotebooksMenu",
-		"StyleSheet"->"MenuListStylesheetMenu",
-		"Palette"->"MenuListPalettesMenu",
-		"Evaluator"|Evaluator->"MenuListGlobalEvaluators",
-		"FontFamily"|FontFamily->"MenuListFonts",
-		"CellTag"|CellTags->"MenuListCellTags",
-		"FormatType"|FormatType->"MenuListDisplayAsFormatTypes",
-		"ConvertFormatType"->"MenuListConvertFormatTypes",
-		"DisplayAsFormatType"->"MenuListDisplayAsFormatTypes",
-		"GlobalEvaluator"->"MenuListGlobalEvaluators",
-		"HelpWindow"->"MenuListHelpWindows",
-		"NotebookEvaluator"->"MenuListNotebookEvaluators",
-		"PrintingStyleEnvironment"|PrintingStyleEnvironment->
-			"PrintingStyleEnvironment",
-		"ScreenStyleEnvironment"|ScreenStyleEnvironment->
-			ScreenStyleEnvironment,
-		"QuitEvaluator"->"MenuListQuitEvaluators",
-		"StartEvaluator"->"MenuListStartEvaluators",
-		"StyleDefinitions"|StyleDefinitions->
-			"MenuListStyleDefinitions",
-		"CharacterEncoding"|CharacterEncoding|
-			ExternalDataCharacterEncoding->
-			"ExternalDataCharacterEncoding",
-		"Style"|Style->"Style",
-		"Window"->"MenuListWindows"
-		};
+$PackageAutocompletionAliases =
+    {
+        "None" | None | Normal -> 0,
+        "AbsoluteFileName" | AbsoluteFileName -> 2,
+        "FileName" | File | FileName -> 3,
+        "Color" | RGBColor | Hue | XYZColor -> 4,
+        "Package" | Package -> 7,
+        "Directory" | Directory -> 8,
+        "Interpreter" | Interpreter -> 9,
+        "Notebook" | Notebook -> "MenuListNotebooksMenu",
+        "StyleSheet" -> "MenuListStylesheetMenu",
+        "Palette" -> "MenuListPalettesMenu",
+        "Evaluator" | Evaluator -> "MenuListGlobalEvaluators",
+        "FontFamily" | FontFamily -> "MenuListFonts",
+        "CellTag" | CellTags -> "MenuListCellTags",
+        "FormatType" | FormatType -> "MenuListDisplayAsFormatTypes",
+        "ConvertFormatType" -> "MenuListConvertFormatTypes",
+        "DisplayAsFormatType" -> "MenuListDisplayAsFormatTypes",
+        "GlobalEvaluator" -> "MenuListGlobalEvaluators",
+        "HelpWindow" -> "MenuListHelpWindows",
+        "NotebookEvaluator" -> "MenuListNotebookEvaluators",
+        "PrintingStyleEnvironment" | PrintingStyleEnvironment ->
+            "PrintingStyleEnvironment",
+        "ScreenStyleEnvironment" | ScreenStyleEnvironment ->
+            ScreenStyleEnvironment,
+        "QuitEvaluator" -> "MenuListQuitEvaluators",
+        "StartEvaluator" -> "MenuListStartEvaluators",
+        "StyleDefinitions" | StyleDefinitions ->
+            "MenuListStyleDefinitions",
+        "CharacterEncoding" | CharacterEncoding |
+            ExternalDataCharacterEncoding ->
+            "ExternalDataCharacterEncoding",
+        "Style" | Style -> "Style",
+        "Window" -> "MenuListWindows"
+    };
 
 
 (* ::Subsubsection::Closed:: *)
 (*AddAutocompletions Convenience*)
 
 
-$PackageAutocompletionTable={
-	f:$PackageAutoCompletionFormats:>f,
-	Sequence@@$PackageAutocompletionAliases,
-	s_String:>{s}
-	};
+$PackageAutocompletionTable = {
+    f : $PackageAutoCompletionFormats :> f,
+    Sequence @@ $PackageAutocompletionAliases,
+    s_String :> {s}
+};
 
 
-PackageAddAutocompletions[o:{__Rule}]/;(
-	TrueQ[$AllowPackageAutocompletions]&&!TrueQ@$recursionProtect
-	):=
-	Block[{$recursionProtect=True},
-		Replace[
-			PackageAddAutocompletions@
-				Replace[o,
-					(s_->v_):>
-						(Replace[s,_Symbol:>SymbolName[s]]->
-							Replace[
-								Flatten[{v},1],
-								$PackageAutocompletionTable,
-								1
-								]),
-					1
-					],
-			_PackageAddAutocompletions->$Failed
-			]
-		];
-PackageAddAutocompletions[s:Except[_List],v_]/;TrueQ[$AllowPackageAutocompletions]:=
-	PackageAddAutocompletions[{s->v}];
-PackageAddAutocompletions[l_,v_]/;TrueQ[$AllowPackageAutocompletions]:=
-	PackageAddAutocompletions@
-		Flatten@{
-			Quiet@
-				Check[
-					Thread[l->v],
-					Map[l->#&,v]
-					]
-			};
+PackageAddAutocompletions[o : {__Rule}] /; (
+    TrueQ[$AllowPackageAutocompletions] && !TrueQ@$recursionProtect
+) :=
+    Block[{$recursionProtect = True},
+        Replace[
+            PackageAddAutocompletions@
+                Replace[o,
+                    (s_ -> v_) :>
+                        (Replace[s, _Symbol :> SymbolName[s]] ->
+                            Replace[
+                                Flatten[{v}, 1],
+                                $PackageAutocompletionTable,
+                                1
+                            ]),
+                    1
+                ],
+            _PackageAddAutocompletions -> $Failed
+        ]
+    ];
+PackageAddAutocompletions[s : Except[_List], v_] /; TrueQ[$AllowPackageAutocompletions] :=
+    PackageAddAutocompletions[{s -> v}];
+PackageAddAutocompletions[l_, v_] /; TrueQ[$AllowPackageAutocompletions] :=
+    PackageAddAutocompletions@
+        Flatten@{
+            Quiet@
+                Check[
+                    Thread[l -> v],
+                    Map[l -> #&, v]
+                ]
+        };
 
 
 (*PackageAddAutocompletions[PackageAddAutocompletions,
@@ -1512,30 +1512,30 @@ PackageAddAutocompletions[l_,v_]/;TrueQ[$AllowPackageAutocompletions]:=
 (* PackageSetAutocompletionData *)
 
 
-PackageSetAutocompletionData[]:=
-	If[DirectoryQ@
-			FileNameJoin@{
-					$PackageDirectory,
-					"Resources",
-					"FunctionalFrequency"
-					},
-		CurrentValue[
-		$FrontEndSession,
-			{PrivatePaths,"AutoCompletionData"}
-			]=
-			DeleteDuplicates@
-				Append[
-					CurrentValue[
-						$FrontEndSession,
-						{PrivatePaths,"AutoCompletionData"}
-						],
-					FileNameJoin@{
-						$PackageDirectory,
-						"Resources",
-						"FunctionalFrequency"
-						}
-					]
-		];
+PackageSetAutocompletionData[] :=
+    If[DirectoryQ@
+        FileNameJoin@{
+            $PackageDirectory,
+            "Resources",
+            "FunctionalFrequency"
+        },
+        CurrentValue[
+            $FrontEndSession,
+            {PrivatePaths, "AutoCompletionData"}
+        ] =
+            DeleteDuplicates@
+                Append[
+                    CurrentValue[
+                        $FrontEndSession,
+                        {PrivatePaths, "AutoCompletionData"}
+                    ],
+                    FileNameJoin@{
+                        $PackageDirectory,
+                        "Resources",
+                        "FunctionalFrequency"
+                    }
+                ]
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1547,11 +1547,11 @@ End[]
 (*FrontEnd*)
 
 
-PackageFEHiddenBlock::usage="";
-PackageFEUnhideSymbols::usage="";
-PackageFERehideSymbols::usage="";
-PackageFEUnhidePackage::usage="";
-PackageFERehidePackage::usage="";
+PackageFEHiddenBlock::usage = "";
+PackageFEUnhideSymbols::usage = "";
+PackageFERehideSymbols::usage = "";
+PackageFEUnhidePackage::usage = "";
+PackageFERehidePackage::usage = "";
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1565,153 +1565,153 @@ Begin["`FrontEnd`"]
 (*PackageFEInstallStylesheets *)
 
 
-PackageFEInstallStylesheets[]:=
-	With[{
-		base=
-			FileNameJoin@{
-				$PackageDirectory,
-				"FrontEnd",
-				"StyleSheets",
-				$PackageName
-				},
-		target=
-			FileNameJoin@{
-					$UserBaseDirectory,
-					"SystemFiles",
-					"FrontEnd",
-					"StyleSheets",
-					$PackageName}
-		},
-		If[DirectoryQ@base,
-			Do[
-				Quiet@
-					CreateFile[
-						FileNameJoin@{
-							target,
-							FileNameDrop[f,FileNameDepth[base]]
-							},
-						CreateIntermediateDirectories->True
-						];
-				CopyFile[f,
-					FileNameJoin@{
-						target,
-						FileNameDrop[f,FileNameDepth[base]]
-						},
-					OverwriteTarget->True],
-				{f,FileNames["*.nb",base,\[Infinity]]}
-				]
-			]
-		];
+PackageFEInstallStylesheets[] :=
+    With[{
+        base =
+            FileNameJoin@{
+                $PackageDirectory,
+                "FrontEnd",
+                "StyleSheets",
+                $PackageName
+            },
+        target =
+            FileNameJoin@{
+                $UserBaseDirectory,
+                "SystemFiles",
+                "FrontEnd",
+                "StyleSheets",
+                $PackageName}
+    },
+        If[DirectoryQ@base,
+            Do[
+                Quiet@
+                    CreateFile[
+                        FileNameJoin@{
+                            target,
+                            FileNameDrop[f, FileNameDepth[base]]
+                        },
+                        CreateIntermediateDirectories -> True
+                    ];
+                CopyFile[f,
+                    FileNameJoin@{
+                        target,
+                        FileNameDrop[f, FileNameDepth[base]]
+                    },
+                    OverwriteTarget -> True],
+                {f, FileNames["*.nb", base, \[Infinity]]}
+            ]
+        ]
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageFEInstallPalettes *)
 
 
-PackageFEInstallPalettes[]:=
-	With[{
-		base=
-			FileNameJoin@{
-				$PackageDirectory,
-				"FrontEnd",
-				"Palettes",
-				$PackageName
-				},
-		target=
-			FileNameJoin@{
-					$UserBaseDirectory,
-					"SystemFiles",
-					"FrontEnd",
-					"Palettes",
-					$PackageName}
-		},
-		If[DirectoryQ@base,
-			Do[
-				Quiet@
-					CreateFile[
-						FileNameJoin@{
-							target,
-							FileNameDrop[f,FileNameDepth[base]]
-							},
-						CreateIntermediateDirectories->True
-						];
-				CopyFile[f,
-					FileNameJoin@{
-						target,
-						FileNameDrop[f,FileNameDepth[base]]
-						},
-					OverwriteTarget->True],
-				{f,FileNames["*.nb",base,\[Infinity]]}
-				]
-			]
-		];
+PackageFEInstallPalettes[] :=
+    With[{
+        base =
+            FileNameJoin@{
+                $PackageDirectory,
+                "FrontEnd",
+                "Palettes",
+                $PackageName
+            },
+        target =
+            FileNameJoin@{
+                $UserBaseDirectory,
+                "SystemFiles",
+                "FrontEnd",
+                "Palettes",
+                $PackageName}
+    },
+        If[DirectoryQ@base,
+            Do[
+                Quiet@
+                    CreateFile[
+                        FileNameJoin@{
+                            target,
+                            FileNameDrop[f, FileNameDepth[base]]
+                        },
+                        CreateIntermediateDirectories -> True
+                    ];
+                CopyFile[f,
+                    FileNameJoin@{
+                        target,
+                        FileNameDrop[f, FileNameDepth[base]]
+                    },
+                    OverwriteTarget -> True],
+                {f, FileNames["*.nb", base, \[Infinity]]}
+            ]
+        ]
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackageFEHiddenBlock*)
 
 
-$PackageFEHideExprSymbols=TrueQ[$PackageFEHideExprSymbols];
-$PackageFEHideEvalExpr=TrueQ[$PackageFEHideEvalExpr];
+$PackageFEHideExprSymbols = TrueQ[$PackageFEHideExprSymbols];
+$PackageFEHideEvalExpr = TrueQ[$PackageFEHideEvalExpr];
 PackageFEHiddenBlock[expr_,
-	hide:True|False|Automatic:Automatic,
-	eval:True|False|Automatic:Automatic
-	]/;TrueQ[$AllowPackageRecoloring]:=
-	If[!$PackageDeclared&&ListQ@$PackageFEHiddenSymbols,
-		With[{
-			s=
-				Cases[
-					HoldComplete[expr],
-					sym_Symbol?(
-						Function[Null,
-							MemberQ[$PackageContexts,Quiet[Context[#]]],
-							HoldAllComplete
-							]
-						):>
-						HoldPattern[sym],
-					\[Infinity]
-					]
-			},
-			$PackageFEHiddenSymbols=
-				{
-					$PackageFEHiddenSymbols,
-					s
-					}
-			],
-		Block[{feBlockReturn},
-			Internal`SymbolList[False];
-			feBlockReturn=If[Replace[eval,Automatic:>$PackageFEHideEvalExpr],expr];
-			If[Replace[hide,Automatic:>$PackageFEHideExprSymbols],
-				With[{
-					s=
-						Cases[
-							HoldComplete[expr],
-							sym_Symbol?(
-								Function[Null,
-									MemberQ[$PackageContexts,Quiet[Context[#]]],
-									HoldAllComplete
-									]
-								):>
-								HoldPattern[sym],
-							\[Infinity]
-							]
-					},
-					Replace[Thread[s,HoldPattern],
-						Verbatim[HoldPattern][{sym__}]:>
-							PackageFERehideSymbols[sym]
-						]
-					]
-				];
-			Internal`SymbolList[True];
-			feBlockReturn
-			]
-		];
+    hide : True | False | Automatic : Automatic,
+    eval : True | False | Automatic : Automatic
+] /; TrueQ[$AllowPackageRecoloring] :=
+    If[!$PackageDeclared && ListQ@$PackageFEHiddenSymbols,
+        With[{
+            s =
+                Cases[
+                    HoldComplete[expr],
+                    sym_Symbol?(
+                        Function[Null,
+                            MemberQ[$PackageContexts, Quiet[Context[#]]],
+                            HoldAllComplete
+                        ]
+                    ) :>
+                        HoldPattern[sym],
+                    \[Infinity]
+                ]
+        },
+            $PackageFEHiddenSymbols =
+                {
+                    $PackageFEHiddenSymbols,
+                    s
+                }
+        ],
+        Block[{feBlockReturn},
+            Internal`SymbolList[False];
+            feBlockReturn = If[Replace[eval, Automatic :> $PackageFEHideEvalExpr], expr];
+            If[Replace[hide, Automatic :> $PackageFEHideExprSymbols],
+                With[{
+                    s =
+                        Cases[
+                            HoldComplete[expr],
+                            sym_Symbol?(
+                                Function[Null,
+                                    MemberQ[$PackageContexts, Quiet[Context[#]]],
+                                    HoldAllComplete
+                                ]
+                            ) :>
+                                HoldPattern[sym],
+                            \[Infinity]
+                        ]
+                },
+                    Replace[Thread[s, HoldPattern],
+                        Verbatim[HoldPattern][{sym__}] :>
+                            PackageFERehideSymbols[sym]
+                    ]
+                ]
+            ];
+            Internal`SymbolList[True];
+            feBlockReturn
+        ]
+    ];
 PackageFEHiddenBlock[expr_,
-	hide:True|False|Automatic:Automatic,
-	eval:True|False|Automatic:Automatic
-	]/;Not@TrueQ[$AllowPackageRecoloring]:=
-	If[eval, expr];
-PackageFEHiddenBlock~SetAttributes~HoldFirst
+    hide : True | False | Automatic : Automatic,
+    eval : True | False | Automatic : Automatic
+] /; Not@TrueQ[$AllowPackageRecoloring] :=
+    If[eval, expr];
+PackageFEHiddenBlock ~ SetAttributes ~ HoldFirst
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1719,37 +1719,37 @@ PackageFEHiddenBlock~SetAttributes~HoldFirst
 
 
 PackageFEUnhideSymbols[syms__Symbol,
-	cpath:{__String}|Automatic:Automatic,
-	mode:"Update"|"Set":"Update"
-	]/;TrueQ[$AllowPackageRecoloring]:=
-	With[{stuff=
-		Map[
-			Function[Null,
-				{Context@#,SymbolName@Unevaluated@#},
-				HoldAllComplete],
-			HoldComplete[syms]
-			]//Apply[List]
-		},
-		KeyValueMap[
-			FrontEndExecute@
-			If[mode==="Update",
-				FrontEnd`UpdateKernelSymbolContexts,
-				FrontEnd`SetKernelSymbolContexts
-				][
-				#,
-				Replace[cpath,Automatic->$ContextPath],
-				{{#,{},{},#2,{}}}
-				]&,
-			GroupBy[stuff,First->Last]
-			];
-		];
+    cpath : {__String} | Automatic : Automatic,
+    mode : "Update" | "Set" : "Update"
+] /; TrueQ[$AllowPackageRecoloring] :=
+    With[{stuff =
+        Map[
+            Function[Null,
+                {Context@#, SymbolName@Unevaluated@#},
+                HoldAllComplete],
+            HoldComplete[syms]
+        ] // Apply[List]
+    },
+        KeyValueMap[
+            FrontEndExecute@
+                If[mode === "Update",
+                    FrontEnd`UpdateKernelSymbolContexts,
+                    FrontEnd`SetKernelSymbolContexts
+                ][
+                    #,
+                    Replace[cpath, Automatic -> $ContextPath],
+                    {{#, {}, {}, #2, {}}}
+                ]&,
+            GroupBy[stuff, First -> Last]
+        ];
+    ];
 PackageFEUnhideSymbols[names_String,
-	mode:"Update"|"Set":"Update"]/;TrueQ[$AllowPackageRecoloring]:=
-	Replace[
-		Thread[ToExpression[Names@names,StandardForm,Hold],Hold],
-		Hold[{s__}]:>PackageFEUnhideSymbols[s,mode]
-		];
-PackageFEUnhideSymbols~SetAttributes~HoldAllComplete;
+    mode : "Update" | "Set" : "Update"] /; TrueQ[$AllowPackageRecoloring] :=
+    Replace[
+        Thread[ToExpression[Names@names, StandardForm, Hold], Hold],
+        Hold[{s__}] :> PackageFEUnhideSymbols[s, mode]
+    ];
+PackageFEUnhideSymbols ~ SetAttributes ~ HoldAllComplete;
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1757,38 +1757,38 @@ PackageFEUnhideSymbols~SetAttributes~HoldAllComplete;
 
 
 PackageFERehideSymbols[syms__Symbol,
-	cpath:{__String}|Automatic:Automatic,
-	mode:"Update"|"Set":"Update"]/;TrueQ[$AllowPackageRecoloring]:=
-	With[{stuff=
-		Map[
-			Function[Null,
-				{Context@#,SymbolName@Unevaluated@#},
-				HoldAllComplete],
-			HoldComplete[syms]
-			]//Apply[List]
-		},
-		KeyValueMap[
-			FrontEndExecute@
-			If[mode==="Update",
-				FrontEnd`UpdateKernelSymbolContexts,
-				FrontEnd`SetKernelSymbolContexts
-				][
-				#,
-				Replace[cpath,
-					Automatic->$ContextPath
-					],
-				{{#,{},#2,{},{}}}
-				]&,
-			GroupBy[stuff,First->Last]
-			];
-		];
+    cpath : {__String} | Automatic : Automatic,
+    mode : "Update" | "Set" : "Update"] /; TrueQ[$AllowPackageRecoloring] :=
+    With[{stuff =
+        Map[
+            Function[Null,
+                {Context@#, SymbolName@Unevaluated@#},
+                HoldAllComplete],
+            HoldComplete[syms]
+        ] // Apply[List]
+    },
+        KeyValueMap[
+            FrontEndExecute@
+                If[mode === "Update",
+                    FrontEnd`UpdateKernelSymbolContexts,
+                    FrontEnd`SetKernelSymbolContexts
+                ][
+                    #,
+                    Replace[cpath,
+                        Automatic -> $ContextPath
+                    ],
+                    {{#, {}, #2, {}, {}}}
+                ]&,
+            GroupBy[stuff, First -> Last]
+        ];
+    ];
 PackageFERehideSymbols[names_String,
-	mode:"Update"|"Set":"Update"]/;TrueQ[$AllowPackageRecoloring]:=
-	Replace[
-		Thread[ToExpression[Names@names,StandardForm,Hold],Hold],
-		Hold[{s__}]:>PackageFERehideSymbols[s,mode]
-		];
-PackageFERehideSymbols~SetAttributes~HoldAllComplete;
+    mode : "Update" | "Set" : "Update"] /; TrueQ[$AllowPackageRecoloring] :=
+    Replace[
+        Thread[ToExpression[Names@names, StandardForm, Hold], Hold],
+        Hold[{s__}] :> PackageFERehideSymbols[s, mode]
+    ];
+PackageFERehideSymbols ~ SetAttributes ~ HoldAllComplete;
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1796,15 +1796,15 @@ PackageFERehideSymbols~SetAttributes~HoldAllComplete;
 
 
 PackageFEUnhidePackage[
-	package_String?FileExistsQ,
-	a___
-	]/;TrueQ[$AllowPackageRecoloring]:=
-	Replace[Thread[Lookup[$DeclaredPackages,package,{}],HoldPattern],
-		Verbatim[HoldPattern][{syms__}]:>
-			PackageFEUnhideSymbols[syms,a]
-		];
-PackageFEUnhidePackage[spec:_String|_List,a___]/;TrueQ[$AllowPackageRecoloring]:=
-	PackageFEUnhidePackage[PackageFilePath@Flatten@{"Packages",spec},a];
+    package_String?FileExistsQ,
+    a___
+] /; TrueQ[$AllowPackageRecoloring] :=
+    Replace[Thread[Lookup[$DeclaredPackages, package, {}], HoldPattern],
+        Verbatim[HoldPattern][{syms__}] :>
+            PackageFEUnhideSymbols[syms, a]
+    ];
+PackageFEUnhidePackage[spec : _String | _List, a___] /; TrueQ[$AllowPackageRecoloring] :=
+    PackageFEUnhidePackage[PackageFilePath@Flatten@{"Packages", spec}, a];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1812,15 +1812,15 @@ PackageFEUnhidePackage[spec:_String|_List,a___]/;TrueQ[$AllowPackageRecoloring]:
 
 
 PackageFERehidePackage[
-	package_String?FileExistsQ,
-	a___
-	]/;TrueQ[$AllowPackageRecoloring]:=
-	Replace[Thread[Lookup[$DeclaredPackages,package,{}],HoldPattern],
-		Verbatim[HoldPattern][{syms__}]:>
-			PackageFERehideSymbols[syms,a]
-		];
-PackageFERehidePackage[spec:_String|_List,a___]/;TrueQ[$AllowPackageRecoloring]:=
-	PackageFERehidePackage[PackageFilePath@Flatten@{"Packages",spec},a];
+    package_String?FileExistsQ,
+    a___
+] /; TrueQ[$AllowPackageRecoloring] :=
+    Replace[Thread[Lookup[$DeclaredPackages, package, {}], HoldPattern],
+        Verbatim[HoldPattern][{syms__}] :>
+            PackageFERehideSymbols[syms, a]
+    ];
+PackageFERehidePackage[spec : _String | _List, a___] /; TrueQ[$AllowPackageRecoloring] :=
+    PackageFERehidePackage[PackageFilePath@Flatten@{"Packages", spec}, a];
 
 
 (* ::Subsubsection::Closed:: *)
@@ -1834,14 +1834,14 @@ End[]
 (*Post-Processing*)
 
 
-PackagePostProcessPrepSpecs::usage="";
-PackagePrepPackageSymbol::usage="";
-PackagePostProcessExposePackages::usage="";
-PackagePostProcessRehidePackages::usage="";
-PackagePostProcessDecontextPackages::usage="";
-PackagePostProcessContextPathReassign::usage="";
-PackageAttachMainAutocomplete::usage="";
-PackagePreemptShadowing::usage="";
+PackagePostProcessPrepSpecs::usage = "";
+PackagePrepPackageSymbol::usage = "";
+PackagePostProcessExposePackages::usage = "";
+PackagePostProcessRehidePackages::usage = "";
+PackagePostProcessDecontextPackages::usage = "";
+PackagePostProcessContextPathReassign::usage = "";
+PackageAttachMainAutocomplete::usage = "";
+PackagePreemptShadowing::usage = "";
 
 
 Begin["`PostProcess`"];
@@ -1851,95 +1851,95 @@ Begin["`PostProcess`"];
 (*PrepFileName*)
 
 
-PackagePostProcessFileNamePrep[fn_]:=
-		Replace[
-			FileNameSplit@
-				FileNameDrop[fn,
-					FileNameDepth@
-						PackageFilePath["Packages"]
-					],{
-			{f_}:>
-				f|fn|StringTrim[f,".m"|".wl"],
-			{p__,f_}:>
-				FileNameJoin@{p,f}|fn|{p,StringTrim[f,".m"|".wl"]}
-			}]
+PackagePostProcessFileNamePrep[fn_] :=
+    Replace[
+        FileNameSplit@
+            FileNameDrop[fn,
+                FileNameDepth@
+                    PackageFilePath["Packages"]
+            ], {
+        {f_} :>
+            f | fn | StringTrim[f, ".m" | ".wl"],
+        {p__, f_} :>
+            FileNameJoin@{p, f} | fn | {p, StringTrim[f, ".m" | ".wl"]}
+    }]
 
 
 (* ::Subsubsection::Closed:: *)
 (*PrepSpecs*)
 
 
-PackagePostProcessPrepSpecs[]:=
-	(
-		Unprotect[
-			$PackagePreloadedPackages,
-			$PackageHiddenPackages,
-			$PackageHiddenContexts,
-			$PackageExposedContexts,
-			$PackageDecontextedPackages
-			];
-		Replace[
-			$PackageLoadSpecs,
-			specs:{__Rule}|_Association:>
-				CompoundExpression[
-					$PackagePreloadedPackages=
-						Replace[
-							Lookup[specs, "PreLoad"],
-							Except[{__String}]->{}
-							],
-					$PackageHiddenPackages=
-						Replace[
-							Lookup[specs,"FEHidden"],
-							Except[{__String}]->{}
-							],
-					$PackageDecontextedPackages=
-						Replace[
-							Lookup[specs,"PackageScope"],
-							Except[{__String}]->{}
-							],
-					$PackageExposedContexts=
-						Replace[
-							Lookup[specs,"ExposedContexts"],
-							Except[{__String}]->{}
-							]
-					]
-				]
-		);
+PackagePostProcessPrepSpecs[] :=
+    (
+        Unprotect[
+            $PackagePreloadedPackages,
+            $PackageHiddenPackages,
+            $PackageHiddenContexts,
+            $PackageExposedContexts,
+            $PackageDecontextedPackages
+        ];
+        Replace[
+            $PackageLoadSpecs,
+            specs : {__Rule} | _Association :>
+                CompoundExpression[
+                    $PackagePreloadedPackages =
+                        Replace[
+                            Lookup[specs, "PreLoad"],
+                            Except[{__String}] -> {}
+                        ],
+                    $PackageHiddenPackages =
+                        Replace[
+                            Lookup[specs, "FEHidden"],
+                            Except[{__String}] -> {}
+                        ],
+                    $PackageDecontextedPackages =
+                        Replace[
+                            Lookup[specs, "PackageScope"],
+                            Except[{__String}] -> {}
+                        ],
+                    $PackageExposedContexts =
+                        Replace[
+                            Lookup[specs, "ExposedContexts"],
+                            Except[{__String}] -> {}
+                        ]
+                ]
+        ]
+    );
 
 
 (* ::Subsubsection::Closed:: *)
 (*ExposePackages*)
 
 
-PackagePostProcessExposePackages[]/;TrueQ[$AllowPackageRecoloring]:=
-	(
-		PackageAppGet/@
-			$PackagePreloadedPackages;
-		With[{
-			syms=
-				If[
-					!MemberQ[$PackageHiddenPackages,
-						PackagePostProcessFileNamePrep[#]
-						],
-					$DeclaredPackages[#],
-					{}
-					]&/@Keys@$DeclaredPackages//Flatten
-			},
-			Replace[
-				Thread[
-					If[ListQ@$PackageFEHiddenSymbols,
-						DeleteCases[syms,
-							Alternatives@@
-								(Verbatim[HoldPattern]/@Flatten@$PackageFEHiddenSymbols)
-							],
-						syms
-						],
-					HoldPattern],
-				Verbatim[HoldPattern][{s__}]:>
-					PackageFEUnhideSymbols[s]
-				]
-			]
-		)
+PackagePostProcessExposePackages[] /; TrueQ[$AllowPackageRecoloring] :=
+    (
+        PackageAppGet /@
+            $PackagePreloadedPackages;
+        With[{
+            syms =
+                If[
+                    !MemberQ[$PackageHiddenPackages,
+                        PackagePostProcessFileNamePrep[#]
+                    ],
+                    $DeclaredPackages[#],
+                    {}
+                ]& /@ Keys@$DeclaredPackages // Flatten
+        },
+            Replace[
+                Thread[
+                    If[ListQ@$PackageFEHiddenSymbols,
+                        DeleteCases[syms,
+                            Alternatives @@
+                                (Verbatim[HoldPattern] /@ Flatten@$PackageFEHiddenSymbols)
+                        ],
+                        syms
+                    ],
+                    HoldPattern],
+                Verbatim[HoldPattern][{s__}] :>
+                    PackageFEUnhideSymbols[s]
+            ]
+        ]
+    )
 
 
 
@@ -1948,56 +1948,56 @@ PackagePostProcessExposePackages[]/;TrueQ[$AllowPackageRecoloring]:=
 (*Rehide Packages*)
 
 
-PackagePostProcessRehidePackages[]/;TrueQ[$AllowPackageRecoloring]:=
-	If[
-		MemberQ[$PackageHiddenPackages,
-			PackagePostProcessFileNamePrep[#]
-			],
-		PackageFERehidePackage@#
-		]&/@Keys@$DeclaredPackages
+PackagePostProcessRehidePackages[] /; TrueQ[$AllowPackageRecoloring] :=
+    If[
+        MemberQ[$PackageHiddenPackages,
+            PackagePostProcessFileNamePrep[#]
+        ],
+        PackageFERehidePackage@#
+    ]& /@ Keys@$DeclaredPackages
 
 
 (* ::Subsubsection::Closed:: *)
 (*Decontext*)
 
 
-PackagePostProcessDecontextPackages[]/;TrueQ[$AllowPackageRecoloring]:=
-	(
-		If[
-			MemberQ[$PackageDecontextedPackages,
-				PackagePostProcessFileNamePrep[#]
-				],
-			PackageFERehidePackage@#;
-			PackageDecontext@#
-			]&/@Keys@$DeclaredPackages;
-		If[ListQ@$PackageScopedSymbols,
-			KeyValueMap[
-				With[{newcont=#},
-					Replace[Join@@#2,
-						HoldComplete[s__]:>
-							(
-								PackageFERehideSymbols[s];
-								Map[
-									Function[Null,
-										Quiet[
-											Check[
-												Set[Context[#],newcont],
-												Remove[#],
-												Context::cxdup
-												],
-											Context::cxdup
-											],
-										HoldAllComplete
-										],
-									HoldComplete[s]
-									]//ReleaseHold;
-								)
-						]
-					]&,
-				GroupBy[Flatten@$PackageScopedSymbols,First->Last]
-				];
-			]
-		)
+PackagePostProcessDecontextPackages[] /; TrueQ[$AllowPackageRecoloring] :=
+    (
+        If[
+            MemberQ[$PackageDecontextedPackages,
+                PackagePostProcessFileNamePrep[#]
+            ],
+            PackageFERehidePackage@#;
+            PackageDecontext@#
+        ]& /@ Keys@$DeclaredPackages;
+        If[ListQ@$PackageScopedSymbols,
+            KeyValueMap[
+                With[{newcont = #},
+                    Replace[Join @@ #2,
+                        HoldComplete[s__] :>
+                            (
+                                PackageFERehideSymbols[s];
+                                Map[
+                                    Function[Null,
+                                        Quiet[
+                                            Check[
+                                                Set[Context[#], newcont],
+                                                Remove[#],
+                                                Context::cxdup
+                                            ],
+                                            Context::cxdup
+                                        ],
+                                        HoldAllComplete
+                                    ],
+                                    HoldComplete[s]
+                                ] // ReleaseHold;
+                            )
+                    ]
+                ]&,
+                GroupBy[Flatten@$PackageScopedSymbols, First -> Last]
+            ];
+        ]
+    )
 
 
 
@@ -2006,86 +2006,86 @@ PackagePostProcessDecontextPackages[]/;TrueQ[$AllowPackageRecoloring]:=
 (*ContextPathReassign*)
 
 
-PackagePostProcessContextPathReassign[]:=
-	With[{cp=$ContextPath},
-		If[MemberQ[cp],
-			"ScpMarkdown`",
-			$ContextPath=
-				Join[
-					Replace[
-						Flatten@{$PackageExposedContexts},
-						Except[_String?(StringEndsQ["`"])]->Nothing,
-						1
-						],
-					$ContextPath
-					];
-			If[TrueQ[$AllowPackageRecoloring], 
-				FrontEnd`Private`GetUpdatedSymbolContexts[]
-				];
-			]
-		]
+PackagePostProcessContextPathReassign[] :=
+    With[{cp = $ContextPath},
+        If[MemberQ[cp],
+            "ScpMarkdown`",
+            $ContextPath =
+                Join[
+                    Replace[
+                        Flatten@{$PackageExposedContexts},
+                        Except[_String?(StringEndsQ["`"])] -> Nothing,
+                        1
+                    ],
+                    $ContextPath
+                ];
+            If[TrueQ[$AllowPackageRecoloring],
+                FrontEnd`Private`GetUpdatedSymbolContexts[]
+            ];
+        ]
+    ]
 
 
 (* ::Subsubsection::Closed:: *)
 (*AttachMainAutocomplete*)
 
 
-PackageAttachMainAutocomplete[]:=
-	PackageAddAutocompletions[ScpMarkdown, 
-		Table[
-			Replace[{}->None]@
-				Cases[
-					DownValues[ScpMarkdown],
-					Nest[
-						Insert[#, _, {1, 1, 1}]&,
-						(HoldPattern[Verbatim[HoldPattern]][
-							ScpMarkdown[s_String, ___]
-							]:>_),
-						n-1
-						]:>s,
-					Infinity
-					],
-			{n, 5}
-			]
-		];
+PackageAttachMainAutocomplete[] :=
+    PackageAddAutocompletions[ScpMarkdown,
+        Table[
+            Replace[{} -> None]@
+                Cases[
+                    DownValues[ScpMarkdown],
+                    Nest[
+                        Insert[#, _, {1, 1, 1}]&,
+                        (HoldPattern[Verbatim[HoldPattern]][
+                            ScpMarkdown[s_String, ___]
+                        ] :> _),
+                        n - 1
+                    ] :> s,
+                    Infinity
+                ],
+            {n, 5}
+        ]
+    ];
 
 
 (* ::Subsubsection::Closed:: *)
 (*PreventShadowing*)
 
 
-PackagePreemptShadowing[]:=
-	Replace[
-		Hold[{m___}]:>
-			Off[m]
-			]@
-		Thread[
-			ToExpression[
-				Map[#<>"$"&, Names["`PackageScope`Private`*"]
-				],
-				StandardForm,
-				Function[Null, 
-					Hold[MessageName[#, "shdw"]],
-					HoldAllComplete
-					]
-				],
-			Hold
-			]
+PackagePreemptShadowing[] :=
+    Replace[
+        Hold[{m___}] :>
+            Off[m]
+    ]@
+        Thread[
+            ToExpression[
+                Map[# <> "$"&, Names["`PackageScope`Private`*"]
+                ],
+                StandardForm,
+                Function[Null,
+                    Hold[MessageName[#, "shdw"]],
+                    HoldAllComplete
+                ]
+            ],
+            Hold
+        ]
 
 
 (* ::Subsubsection::Closed:: *)
 (*PackagePrepPackageSymbol*)
 
 
-PackagePrepPackageSymbol[]:=
-	Switch[$AllowPackageSymbolDefinitions,
-		None,
-			Remove[ScpMarkdown],
-		False,
-			Clear[ScpMarkdown],
-		_,
-			PackageAttachMainAutocomplete[]
-		]
+PackagePrepPackageSymbol[] :=
+    Switch[$AllowPackageSymbolDefinitions,
+        None,
+        Remove[ScpMarkdown],
+        False,
+        Clear[ScpMarkdown],
+        _,
+        PackageAttachMainAutocomplete[]
+    ]
 
 
 End[];
@@ -2095,7 +2095,7 @@ End[];
 (*End*)
 
 
-$ContextPath=DeleteCases[$ContextPath, $Context];
+$ContextPath = DeleteCases[$ContextPath, $Context];
 End[];
 
 
@@ -2104,24 +2104,24 @@ End[];
 
 
 If[`PackageScope`Private`$AllowPackageRecoloring,
-	Internal`SymbolList[False]
-	];
+    Internal`SymbolList[False]
+];
 
 
 (* ::Subsubsection::Closed:: *)
 (*Basic Load*)
 
 
-`PackageScope`Private`$loadAbort=False;
+`PackageScope`Private`$loadAbort = False;
 CheckAbort[
-	`PackageScope`Private`PackageAppLoad[];
-	`PackageScope`Private`$PackageFEHideExprSymbols=True;
-	`PackageScope`Private`$PackageFEHideEvalExpr=True;
-	`PackageScope`Private`$PackageScopeBlockEvalExpr=True;
-	`PackageScope`Private`$PackageDeclared=True;,
-	`PackageScope`Private`$loadAbort=True;
-	EndPackage[];
-	];
+    `PackageScope`Private`PackageAppLoad[];
+    `PackageScope`Private`$PackageFEHideExprSymbols = True;
+    `PackageScope`Private`$PackageFEHideEvalExpr = True;
+    `PackageScope`Private`$PackageScopeBlockEvalExpr = True;
+    `PackageScope`Private`$PackageDeclared = True;,
+    `PackageScope`Private`$loadAbort = True;
+    EndPackage[];
+];
 Protect["`PackageScope`Private`*"];
 Unprotect[`PackageScope`Private`$loadAbort];
 
@@ -2131,12 +2131,12 @@ Unprotect[`PackageScope`Private`$loadAbort];
 
 
 If[!`PackageScope`Private`$loadAbort,
-	`PackageScope`Private`PackagePostProcessPrepSpecs[];
-	`PackageScope`Private`PackagePrepPackageSymbol[];
-	`PackageScope`Private`PackagePostProcessExposePackages[];
-	`PackageScope`Private`PackagePostProcessRehidePackages[];
-	`PackageScope`Private`PackagePostProcessDecontextPackages[];
-	]
+    `PackageScope`Private`PackagePostProcessPrepSpecs[];
+    `PackageScope`Private`PackagePrepPackageSymbol[];
+    `PackageScope`Private`PackagePostProcessExposePackages[];
+    `PackageScope`Private`PackagePostProcessRehidePackages[];
+    `PackageScope`Private`PackagePostProcessDecontextPackages[];
+]
 
 
 Unprotect[`PackageScope`Private`$PackageFEHiddenSymbols];
@@ -2158,9 +2158,9 @@ EndPackage[];
 
 
 If[
-	(Clear@ScpMarkdown`PackageScope`Private`$loadAbort;!#)&@
-		ScpMarkdown`PackageScope`Private`$loadAbort,
-	Unprotect[ScpMarkdown`PackageScope`Private`$LoadCompleted];
-	ScpMarkdown`PackageScope`Private`$LoadCompleted=True;
-	ScpMarkdown`PackageScope`Private`PackagePostProcessContextPathReassign[]
-	]
+    (Clear@ScpMarkdown`PackageScope`Private`$loadAbort;!#)&@
+        ScpMarkdown`PackageScope`Private`$loadAbort,
+    Unprotect[ScpMarkdown`PackageScope`Private`$LoadCompleted];
+    ScpMarkdown`PackageScope`Private`$LoadCompleted = True;
+    ScpMarkdown`PackageScope`Private`PackagePostProcessContextPathReassign[]
+]
