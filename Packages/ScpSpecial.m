@@ -1,6 +1,17 @@
 (* ::Package:: *)
 
+
+
+ScpSpecial::usage="";
 Begin["`Special`"];
+
+ScpSpecial[OptionsPattern[]]:=Block[
+    {from,case,get},
+    from={ScpFromD,ScpFromArc,ScpFromEx,ScpFromJ};
+    case={$ScpCaseD,$ScpCaseArc,$ScpCaseEx,$ScpCaseJ};
+    get=Flatten[Activate@Thread[Inactive[Map][from,case]]];
+    Select[Join[get,$ScpCaseAdd],StringContainsQ[#["Number"],"-"~~__~~"-"]&]
+]
 
 
 

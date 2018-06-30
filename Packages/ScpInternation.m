@@ -1,8 +1,8 @@
-ScpInternation::usage = "";
-Begin["`Internation`"];
+ScpBranch::usage = "";
+Begin["`Branch`"];
 
-Options[ScpInternation] = {Normal -> True};
-ScpInternation[OptionsPattern[]] := Block[
+Options[ScpBranch] = {Normal -> True};
+ScpBranch[OptionsPattern[]] := Block[
     {
         all = Quiet@Join[ScpGetCN[], ScpGetOther[]],
         dQ = Or[
