@@ -1,0 +1,16 @@
+# Windows file caches
+# =========================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.lnk
+
+# IDE
+# =========================
+*.jar
+.idea
+
+# Custom
+# =========================
+*.nb
+*.log
