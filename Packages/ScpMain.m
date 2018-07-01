@@ -12,7 +12,7 @@ $ScpMain = {
     "//scp-wiki-cn.wikidot.com/scp-series-3",
     "//scp-wiki-cn.wikidot.com/scp-series-4"
 };
-$ScpMainModify = {
+$ScpMainModify = Dispatch[{
     "//scp-wiki-cn.wikidot.com/scp-076" -> {
         "http://scp-wiki-cn.wikidot.com/scp-076",
         "http://scp-wiki-cn.wikidot.com/scp-076-2-splash",
@@ -20,7 +20,7 @@ $ScpMainModify = {
     },
     "//scp-wiki-cn.wikidot.com/1231-warning" -> "//scp-wiki-cn.wikidot.com/scp-1231",
     "//scp-wiki-cn.wikidot.com/scp-2615-j" -> "//scp-wiki-cn.wikidot.com/scp-2615"
-};
+}];
 ScpFromIndex[index_] := Block[
     {
         contents = FirstCase[

@@ -1,18 +1,37 @@
 ScpBranch::usage = "";
 Begin["`Branch`"];
 
+$ScpBranchAdd = {
+    <|"Url" -> "//scp-wiki-cn.wikidot.com/scp-cn-066", "Number" -> "SCP-CN-066", "Name" -> "居然对八旬老人做出这种不知羞耻的..."|>,
+    <|"Url" -> "//scp-wiki-cn.wikidot.com/scp-cn-296", "Number" -> "SCP-CN-296", "Name" -> "艾斯 瑟 癖 横杠 瑟 恩 横杠 二九六"|>
+};
+$ScpBranchModify = Dispatch[{
+    "http://scp-wiki-cn.wikidot.com/scp-cn-001" -> {
+        "http://scp-wiki-cn.wikidot.com/scp-cn-001",
+        "http://scp-wiki-cn.wikidot.com/darkequation-s-proposal",
+        "http://scp-wiki-cn.wikidot.com/anglia-s-proposal",
+        "http://scp-wiki-cn.wikidot.com/scarlet-s-proposal",
+        "http://scp-wiki-cn.wikidot.com/lomias-s-proposal/offset/5",
+        "http://scp-wiki-cn.wikidot.com/blackcat-s-proposal",
+        "http://scp-wiki-cn.wikidot.com/blackcat-s-proposal-2",
+        "http://scp-wiki-cn.wikidot.com/aieditor059-s-proposal",
+        "http://scp-wiki-cn.wikidot.com/raven-s-proposal-1",
+        "http://scp-wiki-cn.wikidot.com/tictoc-s-proposal",
+        "http://scp-wiki-cn.wikidot.com/qblevi-s-proposal"
+    }
+
+
+}];
 Options[ScpBranch] = {Normal -> True};
 ScpBranch[OptionsPattern[]] := Block[
-    {
-        all = Quiet@Join[ScpGetCN[], ScpGetOther[]],
-        dQ = Or[
-            #["Name"] === "[禁止访问]",
-            !StringContainsQ[#["Number"], "-" ~~ __ ~~ "-"],
-            !NumberQ[ToExpression@StringTake[#["Number"], -1]]
-        ]&;
-    },
+    {all = Quiet@Join[ScpGetCN[], ScpGetOther[]], dQ},
+    dQ = Or[
+        #["Name"] === "[禁止访问]",
+        !StringContainsQ[#["Number"], "-" ~~ __ ~~ "-"],
+        !NumberQ[ToExpression@StringTake[#["Number"], -1]]
+    ]&;
     If[OptionValue[Normal],
-        SortBy[Join[DeleteCases[all, _?dQ], $ScpAdd], #["Number"]&],
+        SortBy[Join[DeleteCases[all, _?dQ], $ScpBrancchAdd], #["Number"]&] /. $ScpBranchModify,
         {Select[all, StringTake[#["Number"], -1] === "J"&], Select[all, dQ]}
     ]
 ];
@@ -71,10 +90,7 @@ ScpGetOther[] := Block[
         |>];
     Join[case1, case2]
 ];
-$ScpAdd = {
-    <|"Url" -> "//scp-wiki-cn.wikidot.com/scp-cn-066", "Number" -> "SCP-CN-066", "Name" -> "居然对八旬老人做出这种不知羞耻的..."|>,
-    <|"Url" -> "//scp-wiki-cn.wikidot.com/scp-cn-296", "Number" -> "SCP-CN-296", "Name" -> "艾斯 瑟 癖 横杠 瑟 恩 横杠 二九六"|>
-};
+
 
 
 
