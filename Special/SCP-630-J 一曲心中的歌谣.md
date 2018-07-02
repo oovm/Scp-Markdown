@@ -1,0 +1,52 @@
+# SCP-630-J
+                        
+
+
+**项目编号：** SCP-630-J
+
+**项目等级：** Euclid
+
+**特殊收容措施：** 当未使用时，SCP-630需被包裹起来保存于Site-69一个上锁的钢制储物柜中。它每周将被清洁以及进行损害检查。每月一次，SCP-630将被安装在Site-69的会堂中并由5至15名D级人员暴露于其3小时，或直到所有异常效应已经平息。此过程将全程视频记录以便后续分析。在任何情形下，安保权限高于1级的个体在一次SCP-630的例行激活中都不被允许处在现场。
+
+当激活时，测试区域将被完全隔离至少三小时。摄影机录像和远程录音必须有至少五分钟的延迟。适量的瓶装水供给将提供给受影响个体，以避免脱水或精疲力竭。所有SCP-630的测试将被通过视频和音频记录。所有实验应在MTF Theta-R（*Tommy Tuneups* ）的成员协助下进行。
+
+**描述：** SCP-630是一套由红色天鹅绒剪裁而成的舞台幕布。SCP-630似乎在物理上无法摧毁，但是会变脏并且需要定期维护以清理因其效应产生的烟渍、血渍，以及水渍。
+
+当被安装于任何能够作为舞台的建筑时（无论其是否常用于戏剧演出），SCP-630-J会进入活跃状态，若有任何智能生物在其~10米范围内还将引发一次局部现实转变。这种状态将自开始之时持续150-300分钟，无论在终止之时范围内有多少智能生物。一旦效应平息，SCP-630在另一个24小时<sup class='footnoteref'>
+ <a shape='rect' class='footnoteref' id='footnoteref-1' href='javascript:;' onclick='WIKIDOT.page.utils.scrollToReference(&apos;footnote-1&apos;)'>1</a>
+</sup>内将不会激活。如果SCP-630在45天内没有被使用，它会无视位置自发地活跃起来，同时具有最小1千米的影响范围。
+
+任何受SCP-630影响的智能生物将表现得如同在一次音乐剧表演中，并将自发表演复杂的歌舞节目。受影响期间，受影响个体不会认为这种反常行为是奇怪的，并且会无视或积极地拒绝接受与之相悖的信息。这种效应是传染性的，并且任何观察到受影响个体现场表演的个体，无论是直接看见还是通过音频或是录像馈送，将会相似地被影响，无视与SCP-630间的距离。然而，录音并不传播这种效应，并且大量的一系列表演已被收集到了<sup class='footnoteref'>
+ <a shape='rect' class='footnoteref' id='footnoteref-2' href='javascript:;' onclick='WIKIDOT.page.utils.scrollToReference(&apos;footnote-2&apos;)'>2</a>
+</sup>。
+
+当一次表演开始，周围的环境会改变以表现出一种更适合于剧院的背景，变得更漂亮、更具有戏剧感，或根据表演的片段的主题变得更有代表性。这种转变包括环绕主要表演者的区域亮度的立刻增加，拓扑和结构上不可能的对周围结构建筑和形状上的改变，突然的天气转变，极端的在时间或月相上的改变，以及自发无来源的音乐伴奏。物品最佳化地适合表演使用，服装会变得更“有主题<sup class='footnoteref'>
+ <a shape='rect' class='footnoteref' id='footnoteref-3' href='javascript:;' onclick='WIKIDOT.page.utils.scrollToReference(&apos;footnote-3&apos;)'>3</a>
+</sup>”并且提供更大的活动自由；鞋类变形为芭蕾舞鞋、踢踏舞鞋，或软舞鞋；警报变得带有旋律并会融入任何音乐演奏；并且任何有节奏的声音例如脚步声或钟表滴答声变得同步。当地的动物偶尔会加入，并且有一个已知实例。此实例是一次复杂的12分钟舞蹈节目，完全由一组50只家猫表演。
+
+尽管SCP-630在表演时对个体没有直接的不良效应，人员之后会经常抱怨说筋疲力尽，脚起泡而且变得青紫，痛苦的肌肉抽筋，以及脱水。身体不适的个体往往一旦在现实转变平息后就崩溃或是昏倒并且没有接受过声乐训练的对象经常承受着呼吸系统疾病和声带紧绷带来的痛苦。当受SCP-630影响时，个体觉察不到这些问题，但是如果空间足够，还是会去喝水并定期在他人表演时去“后台”休息。
+
+受影响的表演者不会考虑他们所唱歌曲内容的适合性，并且会自由地表现出他们内心最深处的想法，暴露尴尬的个人隐私，透露机密讯息，并会抱怨平凡的事情像是他们衣服上的芥末渍。
+
+**值得注意的录音：** 
+特工Lament，19██年9月26日：
+
+<iframe align='' frameborder='0' scrolling='no' class='' src='http://snippets.wdfiles.com/local--code/code:mp3#http://scp-wiki.wdfiles.com/local--files/scp-630-j/favorite_scps.mp3' height='40px' width='320px' style='' />
+
+Bjornsen教授，19██年3月31日：
+
+<iframe align='' frameborder='0' scrolling='no' class='' src='http://snippets.wdfiles.com/local--code/code:mp3#http://scp-wiki.wdfiles.com/local--files/scp-630-j/Out_in_the_world.mp3' height='40px' width='320px' style='' />
+
+**附录：** 清洁工Scruffy持续表现出当暴露于SCP-630时，他的行为只有小小的改变，因此他是唯一被允许清理它的人。如下是他受影响时唱的唯一的东西的一份节录：
+
+<iframe align='' frameborder='0' scrolling='no' class='' src='http://snippets.wdfiles.com/local--code/code:mp3#http://scp-wiki.wdfiles.com/local--files/scp-630-j/anomalous.mp3' height='40px' width='320px' style='' />
+
+
+
+脚注
+<a shape='rect' href='javascript:;' onclick='WIKIDOT.page.utils.scrollToReference(&apos;footnoteref-1&apos;)'>1</a>. 除了在周六，此时SCP-630可以激活两次，在第一次平息之后至少要有4小时的非活跃期。
+<a shape='rect' href='javascript:;' onclick='WIKIDOT.page.utils.scrollToReference(&apos;footnoteref-2&apos;)'>2</a>. 来自I.T.部门的DVD副本现已发售，每张碟$50。仅接受现金和汇票。
+<a shape='rect' href='javascript:;' onclick='WIKIDOT.page.utils.scrollToReference(&apos;footnoteref-3&apos;)'>3</a>. 例：标准实验服经常变为斗篷或是披肩。MTF的防暴头盔通常会变为不是布制多米诺面具就是重度风格化的喜剧/悲剧面具。
+
+
+                    

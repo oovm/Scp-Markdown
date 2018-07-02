@@ -1,0 +1,1 @@
+StringJoin[Join[{}, 0]]
